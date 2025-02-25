@@ -5,8 +5,10 @@
 package buscaminas;
 
 /**
- *
+ * Es la clase Lista usada para la implementaci&oacute#n de grafos con
+ * listas adyacentes.
  * @author leopo
+ * 
  */
 public class Nodo <T>{
     
@@ -37,10 +39,5 @@ public class Nodo <T>{
 
     public void setPnext(Nodo pnext) {
         this.pnext = pnext;
-    }
-    
-    
-    
-    
-    
+    } 
 }
