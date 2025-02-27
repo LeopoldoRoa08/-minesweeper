@@ -68,29 +68,7 @@ public class Lista <T> {
         
     }
 
-    public void Delete (Object data) {
-        Nodo actual = cabeza;
-        Nodo previo = null;
-
-        while (actual != null && actual.getDato() != key) {
-            previo = actual;
-            actual = actual.getSiguiente();
-        }
-
-        if (actual == null) {
-            System.out.println("El dato no se encontró en la lista");
-            return;
-        }
-
-        if (previo == null) {
-            cabeza = actual.getSiguiente();
-        } else {
-            previo.setSiguiente(actual.getSiguiente());
-        }
-
-        System.out.println("El dato " + key + " fue eliminado de la lista");
-    }
-}
+   
     
     
     /**
