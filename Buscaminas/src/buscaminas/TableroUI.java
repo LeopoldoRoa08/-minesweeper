@@ -6,14 +6,14 @@ package buscaminas;
 
 /**
  *
- * @author leopo
+ * @author zarna
  */
-public class Buscaminas extends javax.swing.JFrame {
+public class TableroUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form Buscaminas
+     * Creates new form TableroUI
      */
-    public Buscaminas() {
+    public TableroUI() {
         initComponents();
     }
 
@@ -26,55 +26,42 @@ public class Buscaminas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        crearOpciones = new javax.swing.JButton();
-        cargarTablero = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        cronometro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        crearOpciones.setText("Crear nuevo juego");
-        crearOpciones.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("CRONOMETRO:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
+
+        cronometro.setText("00");
+        cronometro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearOpcionesActionPerformed(evt);
+                cronometroActionPerformed(evt);
             }
         });
-
-        cargarTablero.setText("Cargar juego");
-
-        jLabel1.setText("BUSCAMINAS");
+        jPanel1.add(cronometro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(cargarTablero)
-                    .addComponent(crearOpciones))
-                .addContainerGap(142, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addComponent(crearOpciones)
-                .addGap(18, 18, 18)
-                .addComponent(cargarTablero)
-                .addGap(93, 93, 93))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void crearOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearOpcionesActionPerformed
-        Opcion ventana2 = new Opcion();
-        ventana2.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_crearOpcionesActionPerformed
+    private void cronometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cronometroActionPerformed
+        
+    }//GEN-LAST:event_cronometroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -93,27 +80,27 @@ public class Buscaminas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Buscaminas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TableroUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Buscaminas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TableroUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Buscaminas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TableroUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Buscaminas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TableroUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Buscaminas().setVisible(true);
+                new TableroUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cargarTablero;
-    private javax.swing.JButton crearOpciones;
+    private javax.swing.JTextField cronometro;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
