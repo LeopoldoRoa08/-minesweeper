@@ -2,10 +2,10 @@
  *
  * @author ricardo
  */
-public class CounterProyecto {
+public class Contador {
     private int segundos;
 
-    public CounterProyecto() {
+    public Contador() {
     }
 
 

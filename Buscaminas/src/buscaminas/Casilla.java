@@ -8,24 +8,31 @@ package buscaminas;
  *
  * @author leopo
  */
-public class Casilla {
+public class Casilla <T> {
     private int Prow;
-    private String Pcolumn;
+    private T Pcolumn;
     private boolean Mine;
 
     public int getProw() {
         return Prow;
     }
 
+    public Casilla(int Prow, T Pcolumn) {
+        this.Prow = Prow;
+        this.Pcolumn = Pcolumn;
+    }
+    
+    
+
     public void setProw(int Prow) {
         this.Prow = Prow;
     }
 
-    public String getPcolumn() {
+    public Object getPcolumn() {
         return Pcolumn;
     }
 
-    public void setPcolumn(String Pcolumn) {
+    public void setPcolumn(T Pcolumn) {
         this.Pcolumn = Pcolumn;
     }
 
