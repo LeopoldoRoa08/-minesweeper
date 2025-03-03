@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -11,40 +11,41 @@ package buscaminas;
  * @param <T>
  */
 public class GrafoLA <T>{
-    boolean dirigido;
-    int maxNodos;
+   
+    private Casilla  pfirst;
     int numVertices;
-    Lista listaAdy[];
     
-    public GrafoLA (boolean d) {
-        maxNodos = numVertices = 0;
-        dirigido = d;
+    
+    public GrafoLA () {
+        pfirst = null;
+       numVertices = 0;
+        
     }
     
-    public GrafoLA (int max, boolean d) {
-        numVertices = 0;
-        dirigido = d;
-        maxNodos = max;
-        listaAdy = new Lista[max];
+    //public GrafoLA (int max, boolean d) {
+       // numVertices = 0;
+        //dirigido = d;
+       // maxNodos = max;
+        //listaAdy = new Lista[max];
+   // }
+    
+   // public void insertaArista (int i, int j) {
+       // if (i >= numVertices){
+            //throw new IllegalArgumentException("No existe tal vertice en el grafo");
+        //}else{    
+            //listaAdy[i].Append(j);
+            //if(!dirigido)
+                //listaAdy[j].Append(i);
+       // }
     }
     
-    public void insertaArista (int i, int j) {
-        if (i >= numVertices){
-            throw new IllegalArgumentException("No existe tal vertice en el grafo");
-        }else{    
-            listaAdy[i].Append(j);
-            if(!dirigido)
-                listaAdy[j].Append(i);
-        }
-    }
-    
-    public void eliminaArista (int i, int j) {
-        if (i >= numVertices){
-            throw new IllegalArgumentException("No existe tal vertice en el grafo");
-        }else{    
-            listaAdy[i].Delete(j);
-            if(!dirigido)
-                listaAdy[j].Delete(i);
-        }
-    }
-}
+   // public void eliminaArista (int i, int j) {
+       // if (i >= numVertices){
+          //  throw new IllegalArgumentException("No existe tal vertice en el grafo");
+       // }else{    
+            //listaAdy[i].Delete(j);
+           // if(!dirigido)
+                //listaAdy[j].Delete(i);
+        //}
+    //}
+//}

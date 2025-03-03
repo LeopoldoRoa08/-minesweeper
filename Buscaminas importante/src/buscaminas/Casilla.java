@@ -12,6 +12,7 @@ public class Casilla <T> {
     private int Prow;
     private T Pcolumn;
     private boolean Mine;
+    private int mineAdy;
 
     public int getProw() {
         return Prow;
@@ -42,6 +43,14 @@ public class Casilla <T> {
 
     public void setMine(boolean Mine) {
         this.Mine = Mine;
+    }
+
+    public void setMine(int mineAdy) {
+        this.mineAdy= mineAdy;
+    }
+
+    public int getMineAdy() {
+        return mineAdy;
     }
     
     
