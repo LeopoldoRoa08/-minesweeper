@@ -8,8 +8,7 @@ package buscaminas;
  *
  * @author leopo
  */
-
- public class Tablero {
+public class Tablero {
     private int rows;
     private int columns;
     private GrafoLA<Integer> grafo;
@@ -21,21 +20,6 @@ package buscaminas;
         this.grafo = new GrafoLA<>(rows*columns,false);
         this.casillas=new Casilla[rows][columns];
         
-    }
-    
-    
-    private void inicializarTablero() {
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < columns; c++) {
-                casillas[r][c] = new Casilla<>(r, c); // Inicializar casilla
-                int index = r * columns + c;
-                if (r > 0) grafo.insertaArista(index, (r - 1) * columns + c); // Celda de arriba
-                if (r < rows - 1) grafo.insertaArista(index, (r + 1) * columns + c); // Celda de abajo
-                if (c > 0) grafo.insertaArista(index, r * columns + (c - 1)); // Celda a la izquierda
-                if (c < columns - 1) grafo.insertaArista(index, r * columns + (c + 1)); // Celda a la derecha
-            }
-        }
-        grafo.numVertices = rows * columns; // Establecer el número de vértices
     }
 
     public int getRows() {
