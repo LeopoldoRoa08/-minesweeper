@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package buscaminas;
+package buscaminas.hola;
+
 
 /**
  *
  * @author leopo
  */
-   
-
 public class Pila {
      private int size;
     private Casilla cima;
@@ -50,8 +49,8 @@ public class Pila {
         this.size--;
         return aux;
     }
-    
- public Object recorrer() {
+
+    public Object recorrer() {
         if (isEmpty()) {
             System.out.println("La lista está vacía");
             return -1; // Indicador de lista vacía
@@ -63,3 +62,7 @@ public class Pila {
         return size;
     }
 }
+
+
+
+

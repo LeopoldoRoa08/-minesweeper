@@ -1,44 +1,43 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package buscaminas;
+package buscaminas.hola;
+
+
 import java.util.Random;
+
 /**
- * Una implementaci&oacute;n de grafos usando listas adyacentes.La lisa mantendra
- un control de cada nueva casilla a la que se le asigna una mina.
- * @author LeBron
- * @param <T>
+ *
+ * @author ricardo
  */
-  public class GrafoLA {
+public class GrafoLA {
     private Casilla  pfirst;
     private int numVertices;
-    private int filas ;
-    private int columnas;
+    private int[] filasarray = {1,2,3,4,5,6,7,8,9,10} ;
+    private int[] columnasarray = {1,2,3,4,5,6,7,8,9,10};
     private Casilla pFirst;
     private Casilla pLast;
-    private int num_minas;
-    private static boolean[][] conMina;
     
     public GrafoLA () {
        pFirst = null;
        numVertices = 0;
     }
 
-    public int getFilas() {
-        return filas;
+    public int[] getFilasarray() {
+        return filasarray;
     }
 
-    public void setFila(int filasarray) {
-        this.filas = filas;
+    public void setFilasarray(int[] filasarray) {
+        this.filasarray = filasarray;
     }
 
-    public int getColumnas() {
-        return columnas;
+    public int[] getColumnasarray() {
+        return columnasarray;
     }
 
-    public void setColumnas(int columnasarray) {
-        this.columnas= columnas;
+    public void setColumnasarray(int[] columnasarray) {
+        this.columnasarray = columnasarray;
     }
 
     public Casilla getPfirst() {
@@ -48,8 +47,8 @@ import java.util.Random;
     public void setPfirst(Casilla pfirst) {
         this.pfirst = pfirst;
     }
-    
- public int getNumVertices() {
+
+    public int getNumVertices() {
         return numVertices;
     }
 
@@ -65,8 +64,8 @@ import java.util.Random;
     
     for(int i = 0; i<2; i++){
         for(int j = 0; j<5; j++){
-            int f = getFilas();
-            int c = getColumnas();
+            int f = getFilasarray()[i];
+            int c = getColumnasarray()[j];
             Casilla nuevo = new Casilla(f,c);
             Append(nuevo);
         }
@@ -74,7 +73,7 @@ import java.util.Random;
     setNumVertices(getNumVertices()+1);
     }
     
- public void Append(Casilla casilla){
+    public void Append(Casilla casilla){
     if(isEmpty()){
     setPfirst(casilla);
     setpLast(casilla);
@@ -107,8 +106,9 @@ import java.util.Random;
             aux.getLista().Append(aux2);
             }
             }
-            
-}if(aux.getProw()>1){
+
+            //Condicion uno : Columna izquierda
+        }if(aux.getProw()>1){
             Casilla extra = new Casilla(aux.getProw()+1,(aux.getPcolumn()));
             Casilla aux2 = getPfirst();
             while(aux2!=null){
@@ -129,7 +129,9 @@ import java.util.Random;
         
         }
         
-if(aux.getPcolumn()>1 && aux.getProw()>1){
+        
+        
+        if(aux.getPcolumn()>1 && aux.getProw()>1){
             Casilla extra = new Casilla(aux.getProw()-1,(aux.getPcolumn()-1));
             Casilla aux2 = getPfirst();
             while(aux2!=null){
@@ -169,7 +171,7 @@ if(aux.getPcolumn()>1 && aux.getProw()>1){
     
     }
     
-public void imprimirCasillas(){
+    public void imprimirCasillas(){
     Casilla aux = getPfirst();
     while(aux!=null){
     System.out.println("Fila: "+aux.getProw()+", Columna:"+ aux.getPcolumn());
@@ -187,47 +189,6 @@ public void imprimirCasillas(){
     public void setpLast(Casilla pLast) {
         this.pLast = pLast;
     }
-    
-    public void GenerarMinas() {
-    Random m = new Random();
-    int minas = 0;
-    while (minas != num_minas) {
-        int Pfilas = m.nextInt(filas);
-        int Pcolumnas = m.nextInt(columnas);
-        
-        // Reiniciar temp en cada iteración del bucle
-        Casilla temp = getPfirst();
-        while (temp != null) {
-            if (temp.getProw() == Pfilas && temp.getPcolumn() == Pcolumnas && !temp.isMine()) {
-                temp.setMine(true);
-                minas++;
-                break;
-            }
-            temp = temp.getpNext();
-        }
-    }
-}
-    
-    public boolean BFS(Casilla origen){
-        Cola queque= new Cola();
-        origen.setVisited(true);
-        queque.encolar(origen);
-        while(!queque.isEmpty()){
-            Casilla nodoAct = (Casilla) queque.desencolar();
-            if (nodoAct.getMineAdy()== 0) return true;
-            Casilla temp = nodoAct.getLista().getPfirst();
-            while(temp!=null){
-                if(!temp.isVisited()){
-                    queque.encolar(temp);
-                    temp.setVisited(true);
-                }
-            }
-            
-        }
-        return false;
-    }
-
-      
     
     public boolean DFS(Casilla origen){
     Pila stack = new Pila();
@@ -261,7 +222,7 @@ public void imprimirCasillas(){
     
     
     
-    
+    }
 
     
-
+}

@@ -2,103 +2,115 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package buscaminas;
+package newpackage;
 
 /**
- * Es la clase Lista usada para la implementaci&oacute;n de grafos con
- * listas adyacentes. En el caso de esta implementacion, seria un vector 
- * que contiene dentro suyo a varias listas de adyacencias al grafo.
- * @author leopo
- * @param <T>
+ *
+ * @author zarna
  */
-public class Lista <T> {
-    private Nodo pfirst;
-    private Nodo plast;
-    private int size;
+public class Lista {
+    Casilla pFirst;
+    Casilla pLast;
+    int iN;
 
     public Lista() {
-        this.pfirst = null;
-        this.plast = null;
-        this.size = 0;
-    }
-
-    public Nodo getPfirst() {
-        return pfirst;
-    }
-
-    public Nodo getPlast() {
-        return plast;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setPfirst(Nodo pfirst) {
-        this.pfirst = pfirst;
-    }
-
-    public void setPlast(Nodo plast) {
-        this.plast = plast;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-    
-    public boolean IsEmpty(){
-        return pfirst==null;
+        this.pFirst = null;
+        this.pLast = null;
+        this.iN = 0;
     }
     
     public void Empty(){
-        pfirst = null;
-        plast = null;
-        size = 0;
+        this.pFirst = null;
+        this.pLast = null;
+        this.iN = 0;
     }
     
-    public void Append(Object data){
-        Nodo newnodo = new Nodo(data);
-        if(pfirst == null){
-            pfirst = plast= newnodo;
+    public boolean isEmpty(){
+        return this.pFirst == null;
+    }
+    
+    public void Append(int dato,int dato2){
+        Casilla pNew = new Casilla(dato,dato2);
+        if(!isEmpty()){
+        this.pLast.pNext = pNew;
+        this.pLast = pNew;
         }else{
-            plast.setPnext(newnodo);
-            plast = newnodo;
+            this.pFirst = this.pLast = pNew;
         }
-        size ++;
-        
+         this.iN++;
     }
-
-   
     
+    public void Inicio(int dato,int dato2){
+        Casilla pNew = new Casilla(dato,dato2);
+        if(!isEmpty()){
+        pNew.pNext = this.pFirst;
+        this.pFirst = pNew;
+        }else{
+            this.pFirst = this.pLast = pNew;
+        }
+        this.iN++;
+    }
     
-    /**
-     * Funci&oacute;n que remueve de la lista algun valor, usando el dato
-     * contenido en el mismo como parametro.
-     * 
-     * @param data es el dato contenido en el nodo a eliminar.
-     */
-    public void Delete(Object data){
-        if (!this.IsEmpty()){
-            if (this.pfirst.getData().equals(data)){
-                if (size == 1){
-                    this.Empty();
-                }else{
-                pfirst = pfirst.getPnext();}
-            }else{
-                Nodo aux = pfirst;
-                while (aux.getPnext() != null && !aux.getPnext()
-                        .getData().equals(data)){ 
-                    aux = aux.getPnext();}
-                if (aux.getPnext() != null){
-                    if (aux.getPnext().getPnext() == null){
-                        aux.setPnext(null);}
-                    else{
-                        aux.setPnext(aux.getPnext().getPnext());
-                    }
-                    size--;   
-                    }
-                }
+    public void Pop(){
+    if(this.pFirst == this.pLast){
+        Empty();
+    }else{
+    Casilla aux = this.pFirst;
+    while(!aux.pNext.equals(this.pLast)){
+        aux = aux.pNext;
+    }aux.pNext=null;
+    this.pLast = aux;
+    this.iN--;}
+    }
+    
+    public void BorrarInicio(){
+    if(this.pFirst == this.pLast){
+        Empty();
+    }else{
+    Casilla aux = this.pFirst.pNext;
+    this.pFirst.pNext = null;
+    this.pFirst = aux;
+    this.iN--;
+    }
+    }
+    
+    public void Borrar(int pValue , int pValue2){
+        Casilla aux = this.pFirst;
+        while(aux.pNext.Prow != pValue && aux.pNext.Pcolumn != pValue2){
+            aux= aux.pNext;
             }
-        } 
+        Casilla aux2 = aux.pNext;
+        aux.pNext = aux.pNext.pNext;
+        aux2.pNext = null;
+        }
+    
+    public void Add(int data, int data2, int pPos, int pPos2){
+    Casilla pNew = new Casilla(data,data2);
+    Casilla aux = this.pFirst;
+    while(aux.Prow != pPos && aux.Pcolumn!= pPos2){
+        aux = aux.pNext;
     }
-
+    pNew.pNext = aux.pNext;
+    aux.pNext = pNew;
+    }
+    
+    public void Append2(Casilla aux){  
+        if(isEmpty()){
+            this.pFirst = this.pLast = aux;
+        }else{
+        
+        this.pLast.pNext = aux;
+        this.pLast = aux;
+        }
+         this.iN++;
+    }
+    
+    public void recorrer(){
+    Casilla aux = this.pFirst;
+    while(aux!=null){
+    System.out.println("Fila: "+aux.Prow+" Columna: "+aux.Pcolumn);
+    aux =aux.pNext;
+    }
+    
+    }
+}

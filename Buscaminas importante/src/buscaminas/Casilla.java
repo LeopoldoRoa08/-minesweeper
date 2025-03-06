@@ -2,37 +2,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package buscaminas;
+package newpackage;
 
 /**
  *
- * @author leopo
+ * @author zarna
  */
 public class Casilla {
-    private int Prow;
-    private int Pcolumn;
-    private boolean Mine;
-    private int mineAdy;
-    private GrafoLA lista;
-    private Casilla pNext;
-    private boolean visited;
+    /**
+ *
+ * @author zarna
+ */
+    int Prow;
+    int Pcolumn;
+    boolean Mine;
+    int mineAdy;
+    Lista lista;
+    Casilla pNext;
+    boolean visited;
+    boolean bandera;
 
-    public boolean isVisited() {
-        return visited;
-    }
-
-    public void setVisited(boolean visited) {
-        this.visited = visited;
-    }
-
+    /**
+     *
+     */
     public Casilla() {
         this.Prow = 0;
         this.Pcolumn = 0;
         this.Mine = false;
         this.mineAdy = 0;
-        this.lista = null;
+        this.lista = new Lista();
         this.pNext = null;
         this.visited = false;
+        this.bandera = false;
+        
     }
 
     public Casilla(int Prow, int Pcolumn) {
@@ -40,61 +42,13 @@ public class Casilla {
         this.Pcolumn = Pcolumn;
         this.Mine = false;
         this.mineAdy = 0;
-        this.lista = null;
+        this.lista = new Lista();
         this.pNext = null;
+        this.bandera = false;
     }
     
-     public GrafoLA getLista() {
-        return lista;
+    public void lista(){
+    this.lista.pFirst = null;
     }
 
-    public void setLista(GrafoLA lista) {
-        this.lista = lista;
-    }
-
-    public Casilla getpNext() {
-        return pNext;
-    }
-
-    public void setpNext(Casilla pNext) {
-        this.pNext = pNext;
-    }
-
-    public int getProw() {
-        return Prow;
-    }
-
-    
-
-    public void setProw(int Prow) {
-        this.Prow = Prow;
-    }
-
-    public int getPcolumn() {
-        return Pcolumn;
-    }
-
-    public void setPcolumn(int Pcolumn) {
-        this.Pcolumn = Pcolumn;
-    }
-
-    public boolean isMine() {
-        return Mine;
-    }
-
-    public void setMine(boolean Mine) {
-        this.Mine = Mine;
-    }
-
-    public void setMine(int mineAdy) {
-        this.mineAdy= mineAdy;
-    }
-
-    public int getMineAdy() {
-        return mineAdy;
-    }
-    
-    }
-    
-
-    
+}
