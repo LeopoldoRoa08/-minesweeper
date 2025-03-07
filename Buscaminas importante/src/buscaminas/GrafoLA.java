@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package buscaminas.hola;
+package buscaminas;
 
 
 import java.util.Random;
@@ -18,6 +18,46 @@ public class GrafoLA {
     private int[] columnasarray = {1,2,3,4,5,6,7,8,9,10};
     private Casilla pFirst;
     private Casilla pLast;
+    private int num_minas;
+    private int filas;
+    private int columnas;
+
+    public int getFilas() {
+        return filas;
+    }
+
+    public int getColumnas() {
+        return columnas;
+    }
+
+    public void setFilas(int filas) {
+        this.filas = filas;
+    }
+
+    public void setColumnas(int columnas) {
+        this.columnas = columnas;
+    }
+    
+    
+    
+
+    public Casilla getpFirst() {
+        return pFirst;
+    }
+
+    public void setpFirst(Casilla pFirst) {
+        this.pFirst = pFirst;
+    }
+
+    public int getNum_minas() {
+        return num_minas;
+    }
+
+    public void setNum_minas(int num_minas) {
+        this.num_minas = num_minas;
+    }
+    
+    
     
     public GrafoLA () {
        pFirst = null;
@@ -211,7 +251,45 @@ public class GrafoLA {
     }
     return false;
     }
-
+    
+     public boolean BFS(Casilla origen){
+        Cola queque= new Cola();
+        origen.setVisited(true);
+        queque.encolar(origen);
+        while(!queque.isEmpty()){
+            Casilla nodoAct = (Casilla) queque.desencolar();
+            if (nodoAct.getMineAdy()== 0) return true;
+            Casilla temp = nodoAct.getLista().getPfirst();
+            while(temp!=null){
+                if(!temp.isVisited()){
+                    queque.encolar(temp);
+                    temp.setVisited(true);
+                }
+            }
+            
+        }
+        return false;
+    }
+     
+    public void GenerarMinas() {
+    Random m = new Random();
+    int minas = 0;
+    while (minas != num_minas) {
+        int Pfilas = m.nextInt(filas);
+        int Pcolumnas = m.nextInt(columnas);
+        
+        // Reiniciar temp en cada iteración del bucle
+        Casilla temp = getPfirst();
+        while (temp != null) {
+            if (temp.getProw() == Pfilas && temp.getPcolumn() == Pcolumnas && !temp.isMine()) {
+                temp.setMine(true);
+                minas++;
+                break;
+            }
+            temp = temp.getpNext();
+        }
+    }
+} 
     
     }
     
@@ -222,7 +300,7 @@ public class GrafoLA {
     
     
     
-    }
+    
 
     
-}
+
