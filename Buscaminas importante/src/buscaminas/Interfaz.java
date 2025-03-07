@@ -2,35 +2,92 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+package buscaminas;
 
 /**
  *
  * @author leopo
  */
-
 import javax.swing.*;
 public class Interfaz extends javax.swing.JFrame {
-    private  int numfilas=10;
-    private int numcolumnas=10;
-    private int numminas = 10;
-    
-    private JButton[][] bottons;
-    
-    
+    private int filas = 8;
+    private int columnas = 8;
+    private int minas = 10;
+    private JButton[][] botones;
+
+    private int xInicial = 20;
+    private int yInicial = 20;
+    private int anchoBoton = 35;
+    private int altoBoton = 35;
+    private JButton botonReiniciar;
 
     /**
      * Creates new form Interfaz
      */
     public Interfaz() {
-        
+        initComponents();
     }
     
-    private void CargarControles(){
-        bottons= new JButton[numfilas][numcolumnas];
-        for(int i=0;i<bottons.length;i++){
-            for(int j=0;j<bottons[i].length;j++){
+    public void initComponents(){
+        botonReiniciar = new JButton("Reiniciar");
+        botonReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reiniciarJuego(evt);
+            }
+        });
+
+        setLayout(new java.awt.BorderLayout());
+        add(botonReiniciar, java.awt.BorderLayout.SOUTH);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Interfaz Buscaminas");
+        setSize(500, 500);
+    }
+    
+    private void inicializarControles() {
+        botones = new JButton[filas][columnas];
+        for (int i = 0; i < botones.length; i++) {
+            for (int j = 0; j < botones[i].length; j++) {
+                botones[i][j] = new JButton();
+                botones[i][j].setName(i + "," + j);
+                botones[i][j].setBorder(null);
+                if (i == 0 && j == 0) {
+                    botones[i][j].setBounds(xInicial, yInicial, anchoBoton, altoBoton);
+                } else if (i == 0 && j != 0) {
+                    botones[i][j].setBounds(
+                        botones[i][j-1].getX() + botones[i][j-1].getWidth(),
+                        yInicial, anchoBoton, altoBoton);
+                } else {
+                    botones[i][j].setBounds(
+                        botones[i-1][j].getX(),
+                        botones[i-1][j].getY() + botones[i-1][j].getHeight(),
+                        anchoBoton, altoBoton);
+                }
+                botones[i][j].addActionListener(new java.awt.event.ActionListener() {
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent e) {
+                        botonPresionado(e);
+                    }
+                });
+                getContentPane().add(botones[i][j]);
+            }
         }
     }
+    
+    private void botonPresionado(java.awt.event.ActionEvent e) {
+        JButton btn = (JButton) e.getSource();
+        String[] coordenada = btn.getName().split(",");
+        int fila = Integer.parseInt(coordenada[0]);
+        int columna = Integer.parseInt(coordenada[1]);
+        JOptionPane.showMessageDialog(rootPane, "Fila: " + fila + ", Columna: " + columna);
+    }
+    
+    private void reiniciarJuego(java.awt.event.ActionEvent evt) {
+        // Implementar lógica para reiniciar el juego
+        JOptionPane.showMessageDialog(this, "¡Juego reiniciado!");
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
