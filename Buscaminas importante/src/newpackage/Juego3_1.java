@@ -11,9 +11,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
-import static newpackage.Opcion.columnas1;
-import static newpackage.Opcion.filas1;
-import static newpackage.Opcion.grafo1;
+
 
 /**
  *
@@ -86,7 +84,7 @@ public class Juego3 extends javax.swing.JFrame {
             botones[f][c].setText("B");
             for(int i=0; i<grafo1.listaady.length; i++){
             if(i==grafo1.ind(f,c)){
-                grafo1
+                
                 }
             }
 
