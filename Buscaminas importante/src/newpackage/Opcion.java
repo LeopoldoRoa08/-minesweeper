@@ -2,19 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package buscaminas;
+package newpackage;
+
+import buscaminas.TableroUI;
 
 /**
  *
  * @author zarna
  */
 public class Opcion extends javax.swing.JFrame {
-
+    static int columnas1;
+    static int filas1;
+    static int minas1;
+    static Grafo grafo1;
+    static boolean busquedaBFS;
     /**
      * Creates new form Opcion
      */
     public Opcion() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -41,9 +48,9 @@ public class Opcion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         instruccionesTexto = new javax.swing.JTextArea();
         retroceder = new javax.swing.JButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
         errorLabel = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel5.setText("jLabel5");
 
@@ -92,7 +99,7 @@ public class Opcion extends javax.swing.JFrame {
 
         instruccionesTexto.setColumns(20);
         instruccionesTexto.setRows(5);
-        instruccionesTexto.setText("Instrucciones:\nLas filas y columnas \ndeben de estar contenidas de 3 a 10\ny el numero de minas puede tener como \nminimo 1 y como maximo el numero \nmaximo de casillas menos 1");
+        instruccionesTexto.setText("Instrucciones:\nLas filas y columnas \ndeben de estar contenidas de 3 a 10\ny el numero de minas puede tener como \nminimo 1 y como maximo el numero \nmaximo de casillas menos 1.\nPara el metodo de busqueda, si el boton \napagado la busqueda es DFS y si esta \nprendido es BFS.");
         jScrollPane1.setViewportView(instruccionesTexto);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 86, -1, 110));
@@ -104,23 +111,28 @@ public class Opcion extends javax.swing.JFrame {
             }
         });
         jPanel1.add(retroceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
-
-        jRadioButton2.setText("Busqueda 1");
-        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
-
-        jRadioButton3.setText("Busqueda 2");
-        jPanel1.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
         jPanel1.add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        jToggleButton1.setText("DFS/BFS");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
+
+        jLabel6.setText("Metodo de busqueda:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,19 +148,23 @@ public class Opcion extends javax.swing.JFrame {
 
     private void generarTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarTableroActionPerformed
         try{
-        int columnas = Integer.parseInt(columnasTexto.getText());
-        int filas = Integer.parseInt(filasTexto.getText());
-        int minas = Integer.parseInt(minasTexto.getText());
-        int casillastotales = columnas*filas;
-        if(columnas < 3 || columnas>10){
+          columnas1 = Integer.parseInt(columnasTexto.getText());
+          filas1 = Integer.parseInt(filasTexto.getText());
+         minas1 = Integer.parseInt(minasTexto.getText());
+        int casillastotales = columnas1*filas1;
+        if(columnas1 < 3 || columnas1>10){
             errorLabel.setText("ERROR: Numero de columnas o filas incorrecto");
-        }else if(filas<3 || filas>10){
+        }else if(filas1<3 || filas1>10){
             errorLabel.setText("ERROR: Numero de columnas o filas incorrecto");
-        }else if(minas<1 || minas>(casillastotales-1)){
+        }else if(minas1<1 || minas1>(casillastotales-1)){
             errorLabel.setText("ERROR: Numero de minas incorrecto");
         }else{
          errorLabel.setText("Juego creado excitosamente");
-         TableroUI ventana3 = new TableroUI();
+         grafo1 = new Grafo(filas1,columnas1,minas1);
+         grafo1.crearTablero();
+         grafo1.minasAdyacentes();
+         
+         Juego3_1 ventana3 = new Juego3_1();
          ventana3.setVisible(true);
          this.setVisible(false);
         }
@@ -162,6 +178,16 @@ public class Opcion extends javax.swing.JFrame {
         ventana1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_retrocederActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        if(jToggleButton1.isSelected()){
+         busquedaBFS = true;
+        }else{
+         busquedaBFS = false;
+        }
+        
+        
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,11 +236,11 @@ public class Opcion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField minasTexto;
     private javax.swing.JButton retroceder;
     // End of variables declaration//GEN-END:variables
