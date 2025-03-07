@@ -2,11 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+<<<<<<< HEAD
+=======
+package buscaminas;
+>>>>>>> cd53f547d26f6d47b9e77609a880277e38f34861
 
 /**
  *
  * @author leopo
  */
+<<<<<<< HEAD
 
 import javax.swing.*;
 public class Interfaz extends javax.swing.JFrame {
@@ -17,11 +22,15 @@ public class Interfaz extends javax.swing.JFrame {
     private JButton[][] bottons;
     
     
+=======
+public class Interfaz extends javax.swing.JFrame {
+>>>>>>> cd53f547d26f6d47b9e77609a880277e38f34861
 
     /**
      * Creates new form Interfaz
      */
     public Interfaz() {
+<<<<<<< HEAD
         
     }
     
@@ -30,6 +39,9 @@ public class Interfaz extends javax.swing.JFrame {
         for(int i=0;i<bottons.length;i++){
             for(int j=0;j<bottons[i].length;j++){
         }
+=======
+        initComponents();
+>>>>>>> cd53f547d26f6d47b9e77609a880277e38f34861
     }
 
     /**
