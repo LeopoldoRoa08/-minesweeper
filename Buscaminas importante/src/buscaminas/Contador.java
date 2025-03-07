@@ -2,6 +2,8 @@
  *
  * @author ricardo
  */
+
+package buscaminas;
 public class Contador {
     private int segundos;
 

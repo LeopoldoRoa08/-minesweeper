@@ -2,19 +2,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package buscaminas;
 
 /**
  *
- * @author zarna
+ * @author leopo
  */
-public class Juego extends javax.swing.JFrame {
+
+import javax.swing.*;
+public class Interfaz extends javax.swing.JFrame {
+    private  int numfilas=10;
+    private int numcolumnas=10;
+    private int numminas = 10;
+    
+    private JButton[][] bottons;
+    
+    
 
     /**
-     * Creates new form Juego
+     * Creates new form Interfaz
      */
-    public Juego() {
-        initComponents();
+    public Interfaz() {
+        
+    }
+    
+    private void CargarControles(){
+        bottons= new JButton[numfilas][numcolumnas];
+        for(int i=0;i<bottons.length;i++){
+            for(int j=0;j<bottons[i].length;j++){
+        }
     }
 
     /**
@@ -59,20 +74,20 @@ public class Juego extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Juego().setVisible(true);
+                new Interfaz().setVisible(true);
             }
         });
     }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package newpackage;
+package buscaminas;
 
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -118,89 +118,7 @@ public class Grafo {
     listaady[7].lista.recorrer();
     }
     
-    /*public void unir(){
-     
-     for(int i=0; i<listaady.length; i++){
-        if(listaady[i].Pcolumn>1){
-            int fila = listaady[i].Prow;
-            int columna = listaady[i].Pcolumn -1;
-            for(int j=0; j<listaady.length; j++){
-                if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                    listaady[i].lista.Append2(listaady[j]);
-                }
-            }
-        }
-     }for(int i=0; i<listaady.length; i++){
-        if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn){
-        int fila = listaady[i].Prow;
-        int columna = listaady[i].Pcolumn +1;
-        for(int j=0; j<listaady.length; j++){
-                if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                   listaady[i].lista.Append2(listaady[j]);
-                } 
-        }
-     }
-     }for(int i=0; i<listaady.length; i++){
-        if(listaady[i].Prow>1){
-        int fila = listaady[i].Prow-1;
-        int columna = listaady[i].Pcolumn;
-            for(int j=0; j<listaady.length; j++){
-                    if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                       listaady[i].lista.Append2(listaady[j]);
-                    } 
-            }
-        }
-     }for(int i=0; i<listaady.length; i++){
-        if(listaady[i].Prow<listaady[numVertices-1].Prow){
-        int fila = listaady[i].Prow+1;
-        int columna = listaady[i].Pcolumn;
-            for(int j=0; j<listaady.length; j++){
-                    if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                       listaady[i].lista.Append2(listaady[j]);
-                    } 
-            }
-        }
-     }for(int i=0; i<listaady.length; i++){
-        if(listaady[i].Pcolumn>1 && listaady[i].Prow>1){
-        int fila = listaady[i].Prow-1;
-        int columna = listaady[i].Pcolumn-1; 
-            for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                           listaady[i].lista.Append2(listaady[j]);
-                        } 
-                }
-        }
-     }for(int i=0; i<listaady.length; i++){
-        if(listaady[i].Pcolumn>1 && listaady[i].Prow<listaady[numVertices-1].Prow){
-        int fila = listaady[i].Prow+1;
-        int columna = listaady[i].Pcolumn-1; 
-            for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                           listaady[i].lista.Append2(listaady[j]);
-                        } 
-                }
-        }
-     }for(int i=0; i<listaady.length; i++){
-        if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn && listaady[i].Prow<listaady[numVertices-1].Prow){
-            int fila = listaady[i].Prow+1;
-            int columna = listaady[i].Pcolumn+1; 
-            for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                           listaady[i].lista.Append2(listaady[j]);
-                        } 
-                }
-        }
-     }for(int i=0; i<listaady.length; i++){
-        if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn && listaady[i].Prow>1){
-            int fila = listaady[i].Prow-1;
-            int columna = listaady[i].Pcolumn+1; 
-            for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                           listaady[i].lista.Append2(listaady[j]);
-                        } 
-                }
-        }
-     }*/
+    
     
     public void generarMina(int minas){
     Random m = new Random();
