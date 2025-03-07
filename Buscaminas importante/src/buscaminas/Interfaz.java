@@ -2,12 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+<<<<<<< HEAD
 package buscaminas;
+=======
+<<<<<<< HEAD
+=======
+package buscaminas;
+>>>>>>> cd53f547d26f6d47b9e77609a880277e38f34861
+>>>>>>> 0e1bbd5bba77e520a986136bb3d0793f6af95320
 
 /**
  *
  * @author leopo
  */
+<<<<<<< HEAD
 import javax.swing.*;
 public class Interfaz extends javax.swing.JFrame {
     private int filas = 8;
@@ -20,11 +28,28 @@ public class Interfaz extends javax.swing.JFrame {
     private int anchoBoton = 35;
     private int altoBoton = 35;
     private JButton botonReiniciar;
+=======
+<<<<<<< HEAD
+
+import javax.swing.*;
+public class Interfaz extends javax.swing.JFrame {
+    private  int numfilas=10;
+    private int numcolumnas=10;
+    private int numminas = 10;
+    
+    private JButton[][] bottons;
+    
+    
+=======
+public class Interfaz extends javax.swing.JFrame {
+>>>>>>> cd53f547d26f6d47b9e77609a880277e38f34861
+>>>>>>> 0e1bbd5bba77e520a986136bb3d0793f6af95320
 
     /**
      * Creates new form Interfaz
      */
     public Interfaz() {
+<<<<<<< HEAD
         initComponents();
     }
     
@@ -42,6 +67,20 @@ public class Interfaz extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Interfaz Buscaminas");
         setSize(500, 500);
+=======
+<<<<<<< HEAD
+        
+    }
+    
+    private void CargarControles(){
+        bottons= new JButton[numfilas][numcolumnas];
+        for(int i=0;i<bottons.length;i++){
+            for(int j=0;j<bottons[i].length;j++){
+        }
+=======
+        initComponents();
+>>>>>>> cd53f547d26f6d47b9e77609a880277e38f34861
+>>>>>>> 0e1bbd5bba77e520a986136bb3d0793f6af95320
     }
     
     private void inicializarControles() {
