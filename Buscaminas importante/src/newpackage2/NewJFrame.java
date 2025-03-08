@@ -7,8 +7,10 @@ package newpackage2;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import static newpackage2.Opcion.busquedaBFS;
 import static newpackage2.Opcion.columnas1;
 import static newpackage2.Opcion.filas1;
 import static newpackage2.Opcion.grafo1;
@@ -16,13 +18,15 @@ import static newpackage2.Opcion.minas1;
 
 /**
  *
- * @author zarna
+ * @author ricardo
  */
 public class NewJFrame extends javax.swing.JFrame {
     private JButton botones[][];
     private boolean banderaPoner;
     private boolean barrerBoolean;
     private int minasact;
+    private Lista listabanderas;
+    private Lista listaminas;
     /**
      * Creates new form NewJFrame
      */
@@ -31,26 +35,27 @@ public class NewJFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         this.setResizable(false);
-        int[] posMinas = {0,1,2,9};
-        int minasact = minas1;
-        banderaNum.setText(Integer.toString(minasact));
-        for(int k=0; k<grafo1.listaady.length; k++){
-        for(int l=0; l<posMinas.length; l++){
-        if(k==posMinas[l]){
-        grafo1.listaady[k].Mine = true;
+        
+        Lista listaminas = new Lista();
+        Lista listabanderas = new Lista();
+        for(int n=0; n<minas1; n++){
+        Random m = new Random();
+        int pFilas = m.nextInt(filas1);
+        int pColumnas = m.nextInt(columnas1);
+        for(int p=0; p<grafo1.listaady.length; p++){
+        if(grafo1.listaady[p].Prow==pFilas && grafo1.listaady[p].Pcolumn==pColumnas){
+            grafo1.listaady[p].Mine = true;
+            listaminas.Append2(grafo1.listaady[p]);
         }
         }
-
         }
         
-        for(int m=0;m<grafo1.listaady.length;m++){
-        if(grafo1.listaady[m].Mine){
-            System.out.println(grafo1.listaady[m].Prow+"-"+grafo1.listaady[m].Pcolumn);
-        }
-        }
+        
         
         botones = new JButton[filas1][columnas1];
+        char[] filaschar = {'A','B','C','D','E','F','G','H','I','J'};
         for(int i=0; i<filas1; i++){
+      
         for(int j=0; j<columnas1; j++){
         botones[i][j] = new JButton();
         botones[i][j].addActionListener(new java.awt.event.ActionListener(){
@@ -67,7 +72,7 @@ public class NewJFrame extends javax.swing.JFrame {
             
         });
         botones[i][j].setBackground(Color.white);
-        botones[i][j].setText(Integer.toString(i)+Integer.toString(j));
+        botones[i][j].setText(String.valueOf(filaschar[i])+Integer.toString(j+1));
         jPanel1.add(botones[i][j]);
         botones[i][j].setName(Integer.toString(i)+Integer.toString(j));
         }
@@ -82,7 +87,7 @@ public class NewJFrame extends javax.swing.JFrame {
             for(int i=0; i<grafo1.listaady.length;i++){
             if(i==grafo1.ind(f, c)){
             if(grafo1.listaady[i].visited == false && grafo1.listaady[i].bandera == true){
-                
+                listabanderas.Append2(grafo1.listaady[i]);
                 grafo1.listaady[i].bandera = false;
                 botones[f][c].setText("");    
                 minasact++;
@@ -100,14 +105,20 @@ public class NewJFrame extends javax.swing.JFrame {
             for(int i=0; i<grafo1.listaady.length;i++){
             if(i==grafo1.ind(f,c)){
                 if(grafo1.listaady[i].visited == false && grafo1.listaady[i].bandera == false){
-                    
+                    //listaminas.Append2(grafo1.listaady[i]);
                     grafo1.listaady[i].bandera = true;
                     botones[f][c].setText("B");
                     minasact--;
                     
+                    //if(listaminas == listabanderas){
+                    //JOptionPane.showMessageDialog(null,"Ganaste");
+                    //}
+                    
+                    
                     
                 }
             }
+            
             }
      }
 
@@ -121,7 +132,11 @@ public class NewJFrame extends javax.swing.JFrame {
     grafo1.minasAdyacentes();
        // Hay que hacerle una validacion antes
         for(int i=0; i<grafo1.listaady.length; i++){
+            
             if(i==grafo1.ind(f,c)){
+                if(grafo1.listaady[i].visited==true){
+                botones[f-1][c-1].setEnabled(false);
+                }
                 if(grafo1.listaady[i].Mine == true){
                 // Muestra todos los numeros de las casillas
                 botones[f-1][c-1].setText("*");
@@ -142,7 +157,19 @@ public class NewJFrame extends javax.swing.JFrame {
                     String adj_str = Integer.toString(adj);
                     botones[f-1][c-1].setText(adj_str);
                     botones[f-1][c-1].setEnabled(false);
-                    
+                    if(busquedaBFS){
+                    grafo1.BFS(grafo1.listaady[i]);
+                    botones[f-1][c-1].setEnabled(false);
+                        
+                        
+                        
+                    }else{
+                        //grafo1.DFS(listaady[i]);
+                    JOptionPane.showMessageDialog(null,"Ganaste");
+                    this.dispose();
+                    Opcion ventana4 = new Opcion();
+                    ventana4.setVisible(true);
+                    }
                     
                 
                 }
@@ -166,8 +193,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        banderaNum = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -194,13 +220,9 @@ public class NewJFrame extends javax.swing.JFrame {
         jButton1.setText("Guardar");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("BANDERAS:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
-
-        banderaNum.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        banderaNum.setText("jLabel2");
-        getContentPane().add(banderaNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setText("BUSCAMINAS");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -257,9 +279,8 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel banderaNum;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;

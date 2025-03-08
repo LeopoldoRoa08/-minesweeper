@@ -6,7 +6,7 @@ package newpackage2;
 
 /**
  *
- * @author leopo
+ * @author zarna
  */
 public class Cola {
     private Casilla pfirst;
@@ -23,7 +23,7 @@ public class Cola {
     if (pfirst == null) {
         pfirst = nuevo;
     } else {
-        pflast.setpNext(nuevo);
+        pflast.pNext = nuevo;
     }
     pflast = nuevo;
     size++;
@@ -71,15 +71,11 @@ public class Cola {
        System.out.println();
     }
    Casilla temp = pfirst;
-    pfirst = pfirst.getpNext();
+    pfirst = pfirst.pNext;
     size--;
     if (pfirst == null) {
         pflast = null;
     }
     return temp;
 }
-
-   
-   
-   
 }

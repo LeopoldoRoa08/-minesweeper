@@ -4,7 +4,6 @@
  */
 package newpackage2;
 
-
 import java.util.Random;
 import javax.swing.JOptionPane;
 
@@ -18,12 +17,6 @@ public class Grafo {
     int columnas;
     Casilla[] listaady;
     int num_minas;
-    Lista listaminas;
-    private Object origen;
-    private Object temp;
-    private Object temp;
-    private Object nodoAct;
-    private Object origen;
 
     public Grafo(int filas, int columnas, int minas) {
         this.numVertices = 0;
@@ -216,7 +209,9 @@ public class Grafo {
     }
     
     public Lista listaMina(){
-     return listaminas;
+    Lista lista2 = new Lista();
+    lista2.Append2(generarMina());
+    return lista2;
     }
     
     public void minasAdyacentes(){
@@ -366,47 +361,48 @@ public class Grafo {
     return 0;
     }
     
-     public boolean BFS(Casilla origen){
+    public void BFS(Casilla origen){
         Cola queque= new Cola();
-        origen.setVisited(true);
+        origen.visited=true;
         queque.encolar(origen);
         while(!queque.isEmpty()){
             Casilla nodoAct = (Casilla) queque.desencolar();
-            if (nodoAct.mineAdy==0) return true;
-            Casilla temp = nodoAct.getLista().;
+            if (nodoAct.mineAdy==0){
+            Casilla temp = nodoAct.lista.pFirst;
             while(temp!=null){
-                if(!temp.isVisited()){
+                if(!temp.visited){
                     queque.encolar(temp);
-                    temp.setVisited(true);
+                    temp.visited=true;  
+                }
                 }
             }
             
         }
-        return false;
+        
     }
 
       
     
-    public boolean DFS(Casilla origen){
+    /*public boolean DFS(Casilla origen){
     Pila stack = new Pila();
     stack.apilar(origen);
-    origen.setVisited(true);
+    origen.visited=true;
     while(!stack.isEmpty()){
-    Casilla nodoAct = (Casilla) stack.desapilar();
-    if(nodoAct.getMineAdy() == 0) return true;
-    Casilla aux = nodoAct.getLista().getPfirst();
+    Casilla nodoAct =  stack.desapilar();
+    if(nodoAct.MineAdy == 0){
+    Casilla aux = nodoAct.lista.pFirst;
     while(aux!=null){
         //Ver si es true o false
-        if(!aux.isVisited()){
+        if(!aux.visited){
             stack.apilar(aux);
-            aux.setVisited(true);
+            aux.visited = true;
         }
-
-    
-
+        return false;
+    }
+    }*/
     }
     
-    
+
     
     
     

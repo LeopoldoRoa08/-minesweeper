@@ -14,9 +14,6 @@ public class Lista {
     Casilla pFirst;
     Casilla pLast;
     int iN;
-    
-    
-    
 
     public Lista() {
         this.pFirst = null;
@@ -33,20 +30,6 @@ public class Lista {
     public boolean isEmpty(){
         return this.pFirst == null;
     }
-
-    public Casilla getpFirst() {
-        return pFirst;
-    }
-
-    public Casilla getpLast() {
-        return pLast;
-    }
-
-    public int getiN() {
-        return iN;
-    }
-    
-    
     
     public void Append(int dato,int dato2){
         Casilla pNew = new Casilla(dato,dato2);
@@ -93,12 +76,12 @@ public class Lista {
     }
     }
     
-    public void Borrar(int pValue , int pValue2){
+    public void Borrar(Casilla aux3){
         Casilla aux = this.pFirst;
-        while(aux.pNext.Prow != pValue && aux.pNext.Pcolumn != pValue2){
+        while(aux!=null && aux.pNext!=aux3){
             aux= aux.pNext;
             }
-        Casilla aux2 = aux.pNext;
+        Casilla aux2 = aux3.pNext;
         aux.pNext = aux.pNext.pNext;
         aux2.pNext = null;
         }
