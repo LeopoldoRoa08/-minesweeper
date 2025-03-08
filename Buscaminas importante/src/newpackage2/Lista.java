@@ -14,6 +14,9 @@ public class Lista {
     Casilla pFirst;
     Casilla pLast;
     int iN;
+    
+    
+    
 
     public Lista() {
         this.pFirst = null;
@@ -30,6 +33,20 @@ public class Lista {
     public boolean isEmpty(){
         return this.pFirst == null;
     }
+
+    public Casilla getpFirst() {
+        return pFirst;
+    }
+
+    public Casilla getpLast() {
+        return pLast;
+    }
+
+    public int getiN() {
+        return iN;
+    }
+    
+    
     
     public void Append(int dato,int dato2){
         Casilla pNew = new Casilla(dato,dato2);
