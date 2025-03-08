@@ -43,8 +43,8 @@ public class NewJFrame extends javax.swing.JFrame {
         int pFilas = m.nextInt(filas1);
         int pColumnas = m.nextInt(columnas1);
         for(int p=0; p<grafo1.listaady.length; p++){
-        if(grafo1.listaady[p].Prow==pFilas && grafo1.listaady[p].Pcolumn==pColumnas){
-            grafo1.listaady[p].Mine = true;
+        if(grafo1.listaady[p].getProw()==pFilas && grafo1.listaady[p].getPcolumn()==pColumnas){
+            grafo1.listaady[p].setMine(true);
             listaminas.Append2(grafo1.listaady[p]);
         }
         }
@@ -86,9 +86,9 @@ public class NewJFrame extends javax.swing.JFrame {
             int c = Integer.parseInt(btn.substring(1,2));
             for(int i=0; i<grafo1.listaady.length;i++){
             if(i==grafo1.ind(f, c)){
-            if(grafo1.listaady[i].visited == false && grafo1.listaady[i].bandera == true){
+            if(grafo1.listaady[i].isVisited() == false && grafo1.listaady[i].isBandera() == true){
                 listabanderas.Append2(grafo1.listaady[i]);
-                grafo1.listaady[i].bandera = false;
+                grafo1.listaady[i].setBandera(false);
                 botones[f][c].setText("");    
                 minasact++;
                 
@@ -104,9 +104,9 @@ public class NewJFrame extends javax.swing.JFrame {
             int c = Integer.parseInt(btn.substring(1,2));
             for(int i=0; i<grafo1.listaady.length;i++){
             if(i==grafo1.ind(f,c)){
-                if(grafo1.listaady[i].visited == false && grafo1.listaady[i].bandera == false){
+                if(grafo1.listaady[i].isVisited() == false && grafo1.listaady[i].isBandera() == false){
                     //listaminas.Append2(grafo1.listaady[i]);
-                    grafo1.listaady[i].bandera = true;
+                    grafo1.listaady[i].setBandera(true);
                     botones[f][c].setText("B");
                     minasact--;
                     
@@ -134,26 +134,26 @@ public class NewJFrame extends javax.swing.JFrame {
         for(int i=0; i<grafo1.listaady.length; i++){
             
             if(i==grafo1.ind(f,c)){
-                if(grafo1.listaady[i].visited==true){
+                if(grafo1.listaady[i].isVisited()==true){
                 botones[f-1][c-1].setEnabled(false);
                 }
-                if(grafo1.listaady[i].Mine == true){
+                if(grafo1.listaady[i].isMine() == true){
                 // Muestra todos los numeros de las casillas
                 botones[f-1][c-1].setText("*");
                 JOptionPane.showMessageDialog(null, "Perdiste");
                 this.dispose();
                 Opcion ventana4 = new Opcion();
                 ventana4.setVisible(true);
-                }else if(grafo1.listaady[i].Mine == false && grafo1.listaady[i].mineAdy>0){
+                }else if(grafo1.listaady[i].isMine() == false && grafo1.listaady[i].getMineAdy()>0){
                 // Muestra la casilla
-                grafo1.listaady[i].visited = true;
-                int adj = grafo1.listaady[i].mineAdy;
+                grafo1.listaady[i].setVisited(true);
+                int adj = grafo1.listaady[i].getMineAdy();
                 String adj_str = Integer.toString(adj);
                 botones[f-1][c-1].setText(adj_str);
                 botones[f-1][c-1].setEnabled(false);
-                }else if(grafo1.listaady[i].Mine == false && grafo1.listaady[i].mineAdy==0){
-                    grafo1.listaady[i].visited = true;
-                    int adj = grafo1.listaady[i].mineAdy;
+                }else if(grafo1.listaady[i].isMine() == false && grafo1.listaady[i].getMineAdy()==0){
+                    grafo1.listaady[i].setVisited(true);
+                    int adj = grafo1.listaady[i].getMineAdy();
                     String adj_str = Integer.toString(adj);
                     botones[f-1][c-1].setText(adj_str);
                     botones[f-1][c-1].setEnabled(false);

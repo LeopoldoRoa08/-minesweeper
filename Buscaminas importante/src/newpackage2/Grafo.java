@@ -8,7 +8,9 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Una implementaci&oacute;n de grafos usando listas adyacentes. 
+ * La lisa mantendra un control de cada nueva casilla a la que se 
+ * le asigna una mina.
  * @author zarna
  */
 public class Grafo {
@@ -18,6 +20,13 @@ public class Grafo {
     Casilla[] listaady;
     int num_minas;
 
+    /**
+     * Constructor de la clase Grafo
+     * @param filas
+     * @param columnas
+     * @param minas 
+     */
+    
     public Grafo(int filas, int columnas, int minas) {
         this.numVertices = 0;
         this.filas = filas;
@@ -41,73 +50,73 @@ public class Grafo {
     for(int i=0; i<listaady.length; i++){
         Lista l2 = new Lista();
         l2.Append2(listaady[i]);
-        if(listaady[i].Pcolumn>1){
-            int fila = listaady[i].Prow;
-            int columna = listaady[i].Pcolumn -1;
+        if(listaady[i].getPcolumn()>1){
+            int fila = listaady[i].getProw();
+            int columna = listaady[i].getPcolumn() -1;
             for(int j=0; j<listaady.length; j++){
-                if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                     l2.Append2(listaady[j]);
                 }
             }
         
-        }if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn){
-        int fila = listaady[i].Prow;
-        int columna = listaady[i].Pcolumn +1;
+        }if(listaady[i].getPcolumn()<listaady[numVertices-1].getPcolumn()){
+        int fila = listaady[i].getProw();
+        int columna = listaady[i].getPcolumn() +1;
         for(int j=0; j<listaady.length; j++){
-                if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                   listaady[i].lista.Append2(listaady[j]);
+                if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
+                   listaady[i].getLista().Append2(listaady[j]);
                 } 
         }
-        }if(listaady[i].Prow>1){
-        int fila = listaady[i].Prow-1;
-        int columna = listaady[i].Pcolumn;
+        }if(listaady[i].getProw()>1){
+        int fila = listaady[i].getProw()-1;
+        int columna = listaady[i].getPcolumn();
             for(int j=0; j<listaady.length; j++){
-                    if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                    if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                        l2.Append2(listaady[j]);
                     } 
             }
-        }if(listaady[i].Prow<listaady[numVertices-1].Prow){
-        int fila = listaady[i].Prow+1;
-        int columna = listaady[i].Pcolumn;
+        }if(listaady[i].getProw()<listaady[numVertices-1].getProw()){
+        int fila = listaady[i].getProw()+1;
+        int columna = listaady[i].getPcolumn();
             for(int j=0; j<listaady.length; j++){
-                    if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                    if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                        l2.Append2(listaady[j]);
                     } 
             }
-        }if(listaady[i].Pcolumn>1 && listaady[i].Prow>1){
-        int fila = listaady[i].Prow-1;
-        int columna = listaady[i].Pcolumn-1; 
+        }if(listaady[i].getPcolumn()>1 && listaady[i].getProw()>1){
+        int fila = listaady[i].getProw()-1;
+        int columna = listaady[i].getPcolumn()-1; 
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                            l2.Append2(listaady[j]);
                         } 
                 }
-        }if(listaady[i].Pcolumn>1 && listaady[i].Prow<listaady[numVertices-1].Prow){
-        int fila = listaady[i].Prow+1;
-        int columna = listaady[i].Pcolumn-1; 
+        }if(listaady[i].getPcolumn()>1 && listaady[i].getProw()<listaady[numVertices-1].getProw()){
+        int fila = listaady[i].getProw()+1;
+        int columna = listaady[i].getPcolumn()-1; 
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                           listaady[i].lista.Append2(listaady[j]);
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
+                           listaady[i].getLista().Append2(listaady[j]);
                         } 
                 }
-        }if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn && listaady[i].Prow<listaady[numVertices-1].Prow){
-            int fila = listaady[i].Prow+1;
-            int columna = listaady[i].Pcolumn+1; 
+        }if(listaady[i].getPcolumn()<listaady[numVertices-1].getPcolumn() && listaady[i].getProw()<listaady[numVertices-1].getProw()){
+            int fila = listaady[i].getProw()+1;
+            int columna = listaady[i].getPcolumn()+1; 
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                            l2.Append2(listaady[j]);
                         } 
                 }
-        }if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn && listaady[i].Prow>1){
-            int fila = listaady[i].Prow-1;
-            int columna = listaady[i].Pcolumn+1; 
+        }if(listaady[i].getPcolumn()<listaady[numVertices-1].getPcolumn() && listaady[i].getProw()>1){
+            int fila = listaady[i].getProw()-1;
+            int columna = listaady[i].getPcolumn()+1; 
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                            l2.Append2(listaady[j]);
                         } 
                 }
         }
-        listaady[i].lista = l2;
+        listaady[i].setLista(l2);
     }
     }
     
@@ -117,74 +126,74 @@ public class Grafo {
      
      Lista l2 = new Lista();
         l2.Append2(listaady[i]);
-        if(listaady[i].Pcolumn>1){
-            int fila = listaady[i].Prow;
-            int columna = listaady[i].Pcolumn -1;
+        if(listaady[i].getPcolumn()>1){
+            int fila = listaady[i].getProw();
+            int columna = listaady[i].getPcolumn() -1;
             for(int j=0; j<listaady.length; j++){
-                if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                     l2.Append2(listaady[j]);
                 }
             }
         
-        }if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn){
-        int fila = listaady[i].Prow;
-        int columna = listaady[i].Pcolumn +1;
+        }if(listaady[i].getPcolumn()<listaady[numVertices-1].getPcolumn()){
+        int fila = listaady[i].getProw();
+        int columna = listaady[i].getPcolumn() +1;
         for(int j=0; j<listaady.length; j++){
-                if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                   listaady[i].lista.Append2(listaady[j]);
+                if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
+                   listaady[i].getLista().Append2(listaady[j]);
                 } 
         }
-        }if(listaady[i].Prow>1){
-        int fila = listaady[i].Prow-1;
-        int columna = listaady[i].Pcolumn;
+        }if(listaady[i].getProw()>1){
+        int fila = listaady[i].getProw()-1;
+        int columna = listaady[i].getPcolumn();
             for(int j=0; j<listaady.length; j++){
-                    if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                    if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                        l2.Append2(listaady[j]);
                     } 
             }
-        }if(listaady[i].Prow<listaady[numVertices-1].Prow){
-        int fila = listaady[i].Prow+1;
-        int columna = listaady[i].Pcolumn;
+        }if(listaady[i].getProw()<listaady[numVertices-1].getProw()){
+        int fila = listaady[i].getProw()+1;
+        int columna = listaady[i].getPcolumn();
             for(int j=0; j<listaady.length; j++){
-                    if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                    if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                        l2.Append2(listaady[j]);
                     } 
             }
-        }if(listaady[i].Pcolumn>1 && listaady[i].Prow>1){
-        int fila = listaady[i].Prow-1;
-        int columna = listaady[i].Pcolumn-1; 
+        }if(listaady[i].getPcolumn()>1 && listaady[i].getProw()>1){
+        int fila = listaady[i].getProw()-1;
+        int columna = listaady[i].getPcolumn()-1; 
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                            l2.Append2(listaady[j]);
                         } 
                 }
-        }if(listaady[i].Pcolumn>1 && listaady[i].Prow<listaady[numVertices-1].Prow){
-        int fila = listaady[i].Prow+1;
-        int columna = listaady[i].Pcolumn-1; 
+        }if(listaady[i].getPcolumn()>1 && listaady[i].getProw()<listaady[numVertices-1].getProw()){
+        int fila = listaady[i].getProw()+1;
+        int columna = listaady[i].getPcolumn()-1; 
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
-                           listaady[i].lista.Append2(listaady[j]);
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
+                           listaady[i].getLista().Append2(listaady[j]);
                         } 
                 }
-        }if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn && listaady[i].Prow<listaady[numVertices-1].Prow){
-            int fila = listaady[i].Prow+1;
-            int columna = listaady[i].Pcolumn+1; 
+        }if(listaady[i].getPcolumn()<listaady[numVertices-1].getPcolumn() && listaady[i].getProw()<listaady[numVertices-1].getProw()){
+            int fila = listaady[i].getProw()+1;
+            int columna = listaady[i].getPcolumn()+1; 
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                            l2.Append2(listaady[j]);
                         } 
                 }
-        }if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn && listaady[i].Prow>1){
-            int fila = listaady[i].Prow-1;
-            int columna = listaady[i].Pcolumn+1; 
+        }if(listaady[i].getPcolumn()<listaady[numVertices-1].getPcolumn() && listaady[i].getProw()>1){
+            int fila = listaady[i].getProw()-1;
+            int columna = listaady[i].getPcolumn()+1; 
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                            l2.Append2(listaady[j]);
                         } 
                 }
         }
-        listaady[i].lista = l2;
-        listaady[i].lista.recorrer();
+        listaady[i].setLista(l2);
+        listaady[i].getLista().recorrer();
      }
     
     public Casilla generarMina(){
@@ -195,8 +204,8 @@ public class Grafo {
         int pFilas = m.nextInt(filas);
         int pColumnas = m.nextInt(columnas);
             for(int i=0; i<listaady.length; i++){
-            if(listaady[i].Prow == pFilas && listaady[i].Pcolumn == pColumnas){
-            listaady[i].Mine = true;
+            if(listaady[i].getProw() == pFilas && listaady[i].getPcolumn() == pColumnas){
+            listaady[i].setMine(true);
             lol.Append2(listaady[i]);
             mina++;
             return listaady[i];
@@ -216,13 +225,13 @@ public class Grafo {
     
     public void minasAdyacentes(){
     for(int i=0; i<listaady.length; i++){
-    Casilla aux = listaady[i].lista.pFirst;
+    Casilla aux = listaady[i].getLista().pFirst;
     while(aux!=null){
-        if(aux.Mine == true){
-        listaady[i].mineAdy++;
-        aux = aux.pNext;
+        if(aux.isMine() == true){
+        listaady[i].setMineAdy(listaady[i].getMineAdy() + 1);
+        aux = aux.getpNext();
         }else{
-        aux = aux.pNext;
+        aux = aux.getpNext();
         } 
     }
     }
@@ -230,7 +239,7 @@ public class Grafo {
     
     public void imprimir(){
         for(int i=0;i<listaady.length;i++){
-        System.out.print(listaady[i].mineAdy);
+        System.out.print(listaady[i].getMineAdy());
         
         
         }
@@ -239,17 +248,17 @@ public class Grafo {
     
     public void ponerBandera(int fila, int columna){
     for(int i=0; i<listaady.length ; i++){
-    if(listaady[i].Prow == fila && listaady[i].Pcolumn == columna){
-        listaady[i].bandera = true;
+    if(listaady[i].getProw() == fila && listaady[i].getPcolumn() == columna){
+        listaady[i].setBandera(true);
     }
     }
     }
     
     public void quitarBandera(int fila, int columna){
     for(int i=0; i<listaady.length ; i++){
-    if(listaady[i].Prow == fila && listaady[i].Pcolumn == columna && listaady[i].bandera == true){
-        listaady[i].bandera = false;
-    }else if(listaady[i].Prow == fila && listaady[i].Pcolumn == columna && listaady[i].bandera == false){
+    if(listaady[i].getProw() == fila && listaady[i].getPcolumn() == columna && listaady[i].isBandera() == true){
+        listaady[i].setBandera(false);
+    }else if(listaady[i].getProw() == fila && listaady[i].getPcolumn() == columna && listaady[i].isBandera() == false){
         JOptionPane.showMessageDialog(null,"No hay bandera aqui, intente de nuevo");
     }
     }
@@ -258,14 +267,14 @@ public class Grafo {
     public void barrerCasilla(int fila, int columna){
         // Hay que hacerle una validacion antes
         for(int i=0; i<listaady.length; i++){
-            if(listaady[i].Prow == fila && listaady[i].Pcolumn == columna){
-                if(listaady[i].Mine == true){
+            if(listaady[i].getProw() == fila && listaady[i].getPcolumn() == columna){
+                if(listaady[i].isMine() == true){
                 // Muestra todos los numeros de las casillas
                 
                 JOptionPane.showMessageDialog(null, "Perdiste");
-                }else if(listaady[i].Mine == false && listaady[i].mineAdy>0){
+                }else if(listaady[i].isMine() == false && listaady[i].getMineAdy()>0){
                 // Muestra la casilla
-                }else if(listaady[i].Mine == false && listaady[i].mineAdy==0){
+                }else if(listaady[i].isMine() == false && listaady[i].getMineAdy()==0){
                 //DFS o BFS
                 }
             }
@@ -277,72 +286,72 @@ public class Grafo {
     public void unir3(int i){
      Lista l2 = new Lista();
         l2.Append2(listaady[i]);
-        if(listaady[i].Pcolumn>1){
-            int fila = listaady[i].Prow;
-            int columna = listaady[i].Pcolumn -1;
+        if(listaady[i].getPcolumn()>1){
+            int fila = listaady[i].getProw();
+            int columna = listaady[i].getPcolumn() -1;
             for(int j=0; j<listaady.length; j++){
-                if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                     l2.Append2(listaady[j]);
                 }
             }
-        }if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn){
-            int fila = listaady[i].Prow;
-            int columna = listaady[i].Pcolumn +1;
+        }if(listaady[i].getPcolumn()<listaady[numVertices-1].getPcolumn()){
+            int fila = listaady[i].getProw();
+            int columna = listaady[i].getPcolumn() +1;
             for(int j=0; j<listaady.length;j++){
-                if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                     l2.Append2(listaady[j]);
                 }
             }
-        }if(listaady[i].Prow>1){
-            int fila = listaady[i].Prow - 1;
-            int columna = listaady[i].Pcolumn;
+        }if(listaady[i].getProw()>1){
+            int fila = listaady[i].getProw() - 1;
+            int columna = listaady[i].getPcolumn();
             for(int j=0; j<listaady.length;j++){
-                if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                     l2.Append2(listaady[j]);
                 }
             }
-        }if(listaady[i].Prow<listaady[numVertices-1].Prow){
-            int fila = listaady[i].Prow + 1;
-            int columna = listaady[i].Pcolumn;
+        }if(listaady[i].getProw()<listaady[numVertices-1].getProw()){
+            int fila = listaady[i].getProw() + 1;
+            int columna = listaady[i].getPcolumn();
             for(int j=0; j<listaady.length;j++){
-                if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                     l2.Append2(listaady[j]);
                 }
             }
-        }if(listaady[i].Pcolumn>1 && listaady[i].Prow>1){
-        int fila = listaady[i].Prow-1;
-        int columna = listaady[i].Pcolumn-1; 
+        }if(listaady[i].getPcolumn()>1 && listaady[i].getProw()>1){
+        int fila = listaady[i].getProw()-1;
+        int columna = listaady[i].getPcolumn()-1; 
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                            l2.Append2(listaady[j]);
                         } 
                 }
-        }if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn && listaady[i].Prow>1){
-        int fila = listaady[i].Prow + 1;
-        int columna = listaady[i].Pcolumn - 1;
+        }if(listaady[i].getPcolumn()<listaady[numVertices-1].getPcolumn() && listaady[i].getProw()>1){
+        int fila = listaady[i].getProw() + 1;
+        int columna = listaady[i].getPcolumn() - 1;
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                            l2.Append2(listaady[j]);
                         } 
                 }
-        }if(listaady[i].Pcolumn<listaady[numVertices-1].Pcolumn && listaady[i].Prow<listaady[numVertices-1].Prow){
-        int fila = listaady[i].Prow +1;
-        int columna = listaady[i].Pcolumn +1;
+        }if(listaady[i].getPcolumn()<listaady[numVertices-1].getPcolumn() && listaady[i].getProw()<listaady[numVertices-1].getProw()){
+        int fila = listaady[i].getProw() +1;
+        int columna = listaady[i].getPcolumn() +1;
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                            l2.Append2(listaady[j]);
                         } 
                 }
-        }if(listaady[i].Pcolumn>1 && listaady[i].Prow<listaady[numVertices-1].Prow){
-        int fila = listaady[i].Prow -1;
-        int columna = listaady[i].Pcolumn +1;
+        }if(listaady[i].getPcolumn()>1 && listaady[i].getProw()<listaady[numVertices-1].getProw()){
+        int fila = listaady[i].getProw() -1;
+        int columna = listaady[i].getPcolumn() +1;
             for(int j=0; j<listaady.length; j++){
-                        if(listaady[j].Prow == fila && listaady[j].Pcolumn == columna){
+                        if(listaady[j].getProw() == fila && listaady[j].getPcolumn() == columna){
                            l2.Append2(listaady[j]);
                         } 
                 }
         }
-        listaady[i].lista = l2;
+        listaady[i].setLista(l2);
         
      }
         
@@ -354,7 +363,7 @@ public class Grafo {
     
     public int ind(int f, int c){
     for(int i=0; i<listaady.length; i++){
-    if(listaady[i].Prow == f && listaady[i].Pcolumn == c){
+    if(listaady[i].getProw() == f && listaady[i].getPcolumn() == c){
         return i;
     }
     }
@@ -363,16 +372,16 @@ public class Grafo {
     
     public void BFS(Casilla origen){
         Cola queque= new Cola();
-        origen.visited=true;
+        origen.setVisited(true);
         queque.encolar(origen);
         while(!queque.isEmpty()){
             Casilla nodoAct = (Casilla) queque.desencolar();
-            if (nodoAct.mineAdy==0){
-            Casilla temp = nodoAct.lista.pFirst;
+            if (nodoAct.getMineAdy()==0){
+            Casilla temp = nodoAct.getLista().pFirst;
             while(temp!=null){
-                if(!temp.visited){
+                if(!temp.isVisited()){
                     queque.encolar(temp);
-                    temp.visited=true;  
+                    temp.setVisited(true);  
                 }
                 }
             }

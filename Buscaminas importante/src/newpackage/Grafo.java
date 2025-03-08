@@ -8,7 +8,7 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Implementaci&oacute;n de grafos en forma de listas de ayacencia. 
  * @author zarna
  */
 public class Grafo {

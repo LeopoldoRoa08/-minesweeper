@@ -4,9 +4,6 @@
  */
 package newpackage2;
 
-import buscaminas.hola.Casilla;
-
-
 /**
  *
  * @author leopo

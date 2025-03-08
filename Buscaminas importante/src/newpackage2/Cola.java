@@ -23,7 +23,7 @@ public class Cola {
     if (pfirst == null) {
         pfirst = nuevo;
     } else {
-        pflast.pNext = nuevo;
+        pflast.setpNext(nuevo);
     }
     pflast = nuevo;
     size++;
@@ -71,7 +71,7 @@ public class Cola {
        System.out.println();
     }
    Casilla temp = pfirst;
-    pfirst = pfirst.pNext;
+    pfirst = pfirst.getpNext();
     size--;
     if (pfirst == null) {
         pflast = null;

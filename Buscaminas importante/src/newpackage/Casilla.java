@@ -5,13 +5,16 @@
 package newpackage;
 
 /**
- *
+ * Esta clase define un objeto Casilla que compone el tablero de juego, que
+ * puede contener o no una mina.
  * @author zarna
  */
 public class Casilla {
-    /**
- *
- * @author zarna
+ /**
+  * Las variables que definen el comportamiento y propiedades de la casilla.
+  * Prow y Pcolumn denotan la posici&oacute;n de la casilla en el tablero, Mine 
+  * 
+  * @author zarna
  */
     int Prow;
     int Pcolumn;
@@ -23,7 +26,7 @@ public class Casilla {
     boolean bandera;
 
     /**
-     *
+     * Constructor de la clase casilla sin ningun parametro de entrada.
      */
     public Casilla() {
         this.Prow = 0;
@@ -36,7 +39,15 @@ public class Casilla {
         this.bandera = false;
         
     }
-
+    
+    /**
+     * Constructor de la clase casilla cuando se le da una posici&oacute;n como
+     * entrada.
+     * 
+     * @param Prow Es la fila n en la que se encuentra en una matriz nxm.
+     * @param Pcolumn Es la columna m en la que se encuentra en una matriz nxm.
+     */
+    
     public Casilla(int Prow, int Pcolumn) {
         this.Prow = Prow;
         this.Pcolumn = Pcolumn;
