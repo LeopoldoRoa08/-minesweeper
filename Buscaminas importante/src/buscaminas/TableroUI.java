@@ -8,8 +8,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import javax.swing.JFileChooser;
 
 /**
@@ -81,12 +79,10 @@ public class TableroUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cronometroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         /** Crea el objeto JFileChooser, usado para guardar el estado de juego
          * en formato CSV.
          */
-        
-        
-        
         
         JFileChooser save = new JFileChooser();
         save.showSaveDialog(this);

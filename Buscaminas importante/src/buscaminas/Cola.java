@@ -5,10 +5,11 @@
 package buscaminas;
 
 /**
- *
- * @author leopo
+ * Clase cola usada como estructura de datos auxiliar para la busqueda en
+ * anchura del grafo.
+ * @author zarna
  */
-public class Cola<T> {
+public class Cola {
    private Casilla pfirst;
    private Casilla pflast;
    private int size;
@@ -70,7 +71,7 @@ public class Cola<T> {
     if (pfirst == null) {
        System.out.println();
     }
-    Casilla temp = pfirst;
+   Casilla temp = pfirst;
     pfirst = pfirst.getpNext();
     size--;
     if (pfirst == null) {
@@ -78,8 +79,4 @@ public class Cola<T> {
     }
     return temp;
 }
-
-   
-   
-   
 }

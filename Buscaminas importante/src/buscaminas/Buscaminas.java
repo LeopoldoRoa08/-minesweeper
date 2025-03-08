@@ -15,6 +15,7 @@ public class Buscaminas extends javax.swing.JFrame {
      */
     public Buscaminas() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -41,30 +42,36 @@ public class Buscaminas extends javax.swing.JFrame {
 
         cargarTablero.setText("Cargar juego");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("BUSCAMINAS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(crearOpciones)
+                .addGap(161, 161, 161))
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(cargarTablero)
-                    .addComponent(crearOpciones))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGap(181, 181, 181)
+                .addComponent(cargarTablero)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(81, 81, 81))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(103, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(54, 54, 54)
+                .addGap(30, 30, 30)
                 .addComponent(crearOpciones)
                 .addGap(18, 18, 18)
                 .addComponent(cargarTablero)
-                .addGap(93, 93, 93))
+                .addGap(87, 87, 87))
         );
 
         pack();

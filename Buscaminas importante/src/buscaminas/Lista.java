@@ -4,6 +4,8 @@
  */
 package buscaminas;
 
+import buscaminas.Casilla;
+
 /**
  *
  * @author zarna
@@ -32,7 +34,7 @@ public class Lista {
     public void Append(int dato,int dato2){
         Casilla pNew = new Casilla(dato,dato2);
         if(!isEmpty()){
-        this.pLast.pNext = pNew;
+        this.pLast.setpNext(pNew);
         this.pLast = pNew;
         }else{
             this.pFirst = this.pLast = pNew;
@@ -43,7 +45,7 @@ public class Lista {
     public void Inicio(int dato,int dato2){
         Casilla pNew = new Casilla(dato,dato2);
         if(!isEmpty()){
-        pNew.pNext = this.pFirst;
+        pNew.setpNext(this.pFirst);
         this.pFirst = pNew;
         }else{
             this.pFirst = this.pLast = pNew;
@@ -57,8 +59,8 @@ public class Lista {
     }else{
     Casilla aux = this.pFirst;
     while(!aux.pNext.equals(this.pLast)){
-        aux = aux.pNext;
-    }aux.pNext=null;
+        aux = aux.getpNext();
+    }aux.setpNext(null);
     this.pLast = aux;
     this.iN--;}
     }
@@ -67,31 +69,31 @@ public class Lista {
     if(this.pFirst == this.pLast){
         Empty();
     }else{
-    Casilla aux = this.pFirst.pNext;
-    this.pFirst.pNext = null;
+    Casilla aux = this.pFirst.getpNext();
+    this.pFirst.setpNext(null);
     this.pFirst = aux;
     this.iN--;
     }
     }
     
-    public void Borrar(int pValue , int pValue2){
+    public void Borrar(Casilla aux3){
         Casilla aux = this.pFirst;
-        while(aux.pNext.Prow != pValue && aux.pNext.Pcolumn != pValue2){
-            aux= aux.pNext;
+        while(aux!=null && aux.getpNext()!=aux3){
+            aux= aux.getpNext();
             }
-        Casilla aux2 = aux.pNext;
-        aux.pNext = aux.pNext.pNext;
-        aux2.pNext = null;
+        Casilla aux2 = aux3.getpNext();
+        aux.setpNext(aux.getpNext().getpNext());
+        aux2.setpNext(null);
         }
     
     public void Add(int data, int data2, int pPos, int pPos2){
     Casilla pNew = new Casilla(data,data2);
     Casilla aux = this.pFirst;
-    while(aux.Prow != pPos && aux.Pcolumn!= pPos2){
-        aux = aux.pNext;
+    while(aux.getProw() != pPos && aux.getPcolumn()!= pPos2){
+        aux = aux.getpNext();
     }
-    pNew.pNext = aux.pNext;
-    aux.pNext = pNew;
+    pNew.setpNext(aux.getpNext());
+    aux.setpNext(pNew);
     }
     
     public void Append2(Casilla aux){  
@@ -99,7 +101,7 @@ public class Lista {
             this.pFirst = this.pLast = aux;
         }else{
         
-        this.pLast.pNext = aux;
+        this.pLast.setpNext(aux);
         this.pLast = aux;
         }
          this.iN++;
@@ -107,18 +109,12 @@ public class Lista {
     
     public void recorrer(){
     Casilla aux = this.pFirst;
-    while(aux!=null){
-    System.out.println("Fila: "+aux.Prow+" Columna: "+aux.Pcolumn);
-    aux =aux.pNext;
+    int i= 0;
+    while(aux!=null && i<=iN){
+    System.out.println("Fila: "+aux.getProw()+" Columna: "+aux.getPcolumn());
+    i++;
+    aux =aux.getpNext();
     }
     
-    }
-
-    void Append(Casilla aux2) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    Casilla getPfirst() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package newpackage2;
+package buscaminas;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -10,11 +10,11 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import static newpackage2.Opcion.busquedaBFS;
-import static newpackage2.Opcion.columnas1;
-import static newpackage2.Opcion.filas1;
-import static newpackage2.Opcion.grafo1;
-import static newpackage2.Opcion.minas1;
+import static buscaminas.Opcion.busquedaBFS;
+import static buscaminas.Opcion.columnas1;
+import static buscaminas.Opcion.filas1;
+import static buscaminas.Opcion.grafo1;
+import static buscaminas.Opcion.minas1;
 
 /**
  *

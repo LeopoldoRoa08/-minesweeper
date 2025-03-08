@@ -4,13 +4,13 @@
  */
 package buscaminas;
 
-
 /**
- *
+ * Clase pila usada como estructura de datos auxiliar para la busqueda en
+ * profundidad del grafo.
  * @author leopo
  */
 public class Pila {
-     private int size;
+    private int size;
     private Casilla cima;
 
     public Pila() {
