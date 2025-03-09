@@ -5,8 +5,9 @@
 package buscaminas;
 
 /**
- * Clase cola usada como estructura de datos auxiliar para la busqueda en
+ * Clase cola usada como estructura de datos auxiliar para la b&uacute;squeda en
  * anchura del grafo.
+ * @see Grafo#BFS(buscaminas.Casilla);
  * @author zarna
  */
 public class Cola {
@@ -14,11 +15,23 @@ public class Cola {
    private Casilla pflast;
    private int size;
 
+   /**
+ * Constructor de la clase cola. No requiere de ningun parametro 
+ * al instanciarsepues es usado unicamente para el proceso de recorrido.
+ * @see Grafo#BFS(buscaminas.Casilla);
+ * @author zarna
+ */
+   
     public Cola() {
         this.pfirst=null;
         this.pflast=null;
         this.size=0;
     }
+    
+    /**
+     * Funci&oacute;n que agrega una casilla al final de la cola.
+     * @param nuevo Casilla que ser&aacute; encolada.
+     */
     
     public void encolar(Casilla nuevo) {
     if (pfirst == null) {
@@ -66,7 +79,10 @@ public class Cola {
     return pfirst;
 }
 
-    
+   /**
+    * Funci&oacute;n que remueve el primer integrante de una cola y lo retorna.
+    * @return temp Casilla al principio o frente de la cola.
+    */
    public Casilla desencolar() {
     if (pfirst == null) {
        System.out.println();
