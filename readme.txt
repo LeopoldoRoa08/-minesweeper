@@ -8,4 +8,4 @@ Proyecto por Ricardo Fernández, Leopoldo Roa y Miguel Greco.
 
 Profesor Fernando Torre.
 
-Link del proyecto: https://github.com/LeopoldoRoa08/-minesweeper/tree/main/Buscaminas/src/buscaminas
+Link del proyecto: https://github.com/LeopoldoRoa08/-minesweeper.git
