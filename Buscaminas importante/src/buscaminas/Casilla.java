@@ -12,16 +12,21 @@ package buscaminas;
 public class Casilla {
   /**
    * Las variables que definen el comportamiento y propiedades de la casilla.
+   * Prow y Pcolumn denotan la posici&oacute;n de la casilla en el tablero,
+   * Mine si hay una mina en la casilla, mineAdy el n&uacute;mero de minas
+   * adyacentes a la casilla, pNext un apuntador a una casilla siguiente,
+   * el bool visited para denotar si se ha barrido la casilla y bandera por si
+   * se le ha asignado una bandera.
    * @author zarna
    */
-    public int Prow; // Prow denota la fila en el tablero.
-    public int Pcolumn; // Pcolumn denota la columna en el tablero.
-    public boolean Mine; // Mine indica si hay una mina en la casilla. 
-    public int mineAdy; // mineAdy el n&uacute;mero de minas adyacentes a la casilla.
-    public Lista lista;  // Lista corresponde a 
-    public Casilla pNext; // pNext se usa como apuntador de tipo Casilla.
-    public boolean visited; // visited denotar si se ha barrido la casilla.
-    public boolean bandera; // bandera indica se le ha asignado una bandera a la casilla.
+    public int Prow;
+    public int Pcolumn;
+    public boolean Mine;
+    public int mineAdy;
+    public Lista lista;
+    public Casilla pNext;
+    public boolean visited;
+    public boolean bandera;
 
     /**
      * Constructor de la clase casilla sin ningun parametro de entrada.

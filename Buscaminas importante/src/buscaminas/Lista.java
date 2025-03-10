@@ -4,20 +4,17 @@
  */
 package buscaminas;
 
+import buscaminas.Casilla;
+
 /**
- * Clase Lista usada para la implementaci&oacute;n de grafos en forma
- * de listas enlazadas.
+ *
  * @author zarna
  */
 public class Lista {
     Casilla pFirst;
     Casilla pLast;
     int iN;
-    
-    /** 
-     * Constructor de clase Lista sin parametros iniciales.
-     */
-    
+
     public Lista() {
         this.pFirst = null;
         this.pLast = null;

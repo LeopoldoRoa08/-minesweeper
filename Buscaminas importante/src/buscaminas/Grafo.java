@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 /**
  * Una implementaci&oacute;n de grafos usando listas adyacentes. 
  * La lista mantendra un control de cada nueva casilla a la que se 
- * le asigna una mina. Es un grafo no dirigido
+ * le asigna una mina. 
  * @author zarna
  */
 public class Grafo {
@@ -22,15 +22,9 @@ public class Grafo {
 
     /**
      * Constructor de la clase Grafo. 
-     * @param filas int dado por el usuario a trav&eacute;s de la interfaz
-     * correspondiente a las filas del tablero de juego. Debe ser como m&iacute;nimo 3,
-     * y como m&aacute;ximo 10.
-     * @param columnas int dado por el usuario a trav&eacute;s de la interfaz
-     * correspondiente a las columnas del tablero de juego. Debe ser como m&iacute;nimo 3,
-     * y como m&aacute;ximo 10.
-     * @param minas int dado por el usuario a trav&eacute;s de la interfaz
-     * correspondiente a la cantidad de minas del tablero de juego. Debe ser como 
-     * m&iacute;nimo 1, y como m&aacute;ximo la cantidad de casillas menos 1.
+     * @param filas
+     * @param columnas
+     * @param minas 
      */
     
     public Grafo(int filas, int columnas, int minas) {
@@ -395,33 +389,27 @@ public class Grafo {
         }
         
     }
+
+      
     
-    public boolean DFS(Casilla origen){
-        if (origen == null) {
-            return false;
-        }
-        Pila stack = new Pila();
-        stack.apilar(origen);
-        origen.visited=true;
-        while(!stack.isEmpty()){
-            Casilla nodoAct =  stack.desapilar();
-            if(nodoAct.mineAdy == 0){
-                Casilla aux = nodoAct.lista.pFirst;
-                while(aux!=null){
-                //Ver si es true o false
-                    if(!aux.visited){
-                        stack.apilar(aux);
-                        aux.visited = true;
-                    }
-                    aux = aux.pNext;
-                }
-            }
+    /*public boolean DFS(Casilla origen){
+    Pila stack = new Pila();
+    stack.apilar(origen);
+    origen.visited=true;
+    while(!stack.isEmpty()){
+    Casilla nodoAct =  stack.desapilar();
+    if(nodoAct.MineAdy == 0){
+    Casilla aux = nodoAct.lista.pFirst;
+    while(aux!=null){
+        //Ver si es true o false
+        if(!aux.visited){
+            stack.apilar(aux);
+            aux.visited = true;
         }
         return false;
     }
-}
-
-
+    }*/
+    }
     
 
     
