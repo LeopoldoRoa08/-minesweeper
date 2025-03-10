@@ -15,6 +15,11 @@ import static buscaminas.Opcion.columnas1;
 import static buscaminas.Opcion.filas1;
 import static buscaminas.Opcion.grafo1;
 import static buscaminas.Opcion.minas1;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -22,13 +27,14 @@ import static buscaminas.Opcion.minas1;
  */
 public class NewJFrame extends javax.swing.JFrame {
     private JButton botones[][];
+    private Grafo grafo1;
     private boolean banderaPoner;
     private boolean barrerBoolean;
     private int minasact;
     private Lista listabanderas;
     private Lista listaminas;
     /**
-     * Creates new form NewJFrame
+     * Constructor del tablero sin parametros.
      */
     public NewJFrame() {
         initComponents();
@@ -46,12 +52,10 @@ public class NewJFrame extends javax.swing.JFrame {
         if(grafo1.listaady[p].getProw()==pFilas && grafo1.listaady[p].getPcolumn()==pColumnas){
             grafo1.listaady[p].setMine(true);
             listaminas.Append2(grafo1.listaady[p]);
-        }
-        }
-        }
-        
-        
-        
+                    }   
+                }
+            }
+ 
         botones = new JButton[filas1][columnas1];
         char[] filaschar = {'A','B','C','D','E','F','G','H','I','J'};
         for(int i=0; i<filas1; i++){
@@ -78,6 +82,20 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         }
         
+    }
+    
+    public NewJFrame(JButton[][] botones, Grafo grafo1) {
+        this.botones = botones;
+        this.grafo1 = grafo1;
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        jPanel1.setLayout(new java.awt.GridLayout(botones.length, botones[0].length));
+        for (int i = 0; i < botones.length; i++) {
+            for (int j = 0; j < botones[i].length; j++) {
+                jPanel1.add(botones[i][j]);
+            }
+        }
     }
     
     private void GActionPerformed(ActionEvent e) {
@@ -218,6 +236,11 @@ public class NewJFrame extends javax.swing.JFrame {
         getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, -1));
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -236,12 +259,67 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        
         if(jToggleButton2.isSelected()){
         banderaPoner = true;
         }else{
         banderaPoner = false;
         }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        /** Crea el objeto JFileChooser, usado para guardar el estado de juego
+         * en formato CSV.
+         */
+        
+        JFileChooser save = new JFileChooser();
+        save.showSaveDialog(this);
+        File gameState = save.getSelectedFile();
+        
+        /** Genera el archivo CSV que contiene las variables correspondientes
+         * al juego en el momento en el que se guardo.
+         */
+        
+        if (gameState != null) {
+            BufferedWriter saveFile;
+            try {
+                
+                // Crea un archivo con el nombre dado en la seleccion de
+                // archivo y le agrega ".csv" al final, a menos que ya tenga
+                // esa extensi&oacute;n.
+                
+                if (!gameState.getName().toLowerCase().endsWith(".csv")) {     
+                    saveFile = new BufferedWriter(new FileWriter(gameState+".csv"));
+                }else{
+                    saveFile = new BufferedWriter(new FileWriter(gameState));
+                }
+                // Una primera linea que funciona para identificar que el
+                // archivo que se abrio es un save file.
+                
+                saveFile.write("THIS IS A SAVE FILE!");
+                saveFile.newLine();
+                saveFile.write(filas1 + "," + columnas1 + "," + minas1);
+                saveFile.newLine();
+                
+                // Recorre el grafo para obtener las casillas con sus propiedades.
+                // Se divide usando comas para que en al abrir el archivo en
+                // Excel, los datos esten en distintas celdas.
+                
+                for (int posRow = 0; posRow < filas1; posRow++) {
+                    for (int posColumn = 0; posColumn < columnas1; posColumn++) {
+                        Casilla casilla = grafo1.listaady[grafo1.ind(posRow + 1, posColumn + 1)];
+                        String gameVariableLine = (posRow + 1) + "," + (posColumn + 1) + "," + casilla.isMine() + "," + casilla.isVisited() + "," + casilla.isBandera() + "," + casilla.getMineAdy();
+                        saveFile.write(gameVariableLine);
+                        saveFile.newLine();
+                }
+            }
+                saveFile.flush();
+            }catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Error: No se ha podido guardar el estado del juego." + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
