@@ -4,10 +4,9 @@
  */
 package buscaminas;
 
-import buscaminas.Casilla;
-
 /**
- *
+ * Clase Lista usada para la implementaci&oacute;n de grafos en forma
+ * de listas enlazadas.
  * @author zarna
  */
 public class Lista {
@@ -15,11 +14,20 @@ public class Lista {
     Casilla pLast;
     int iN;
 
+    /**
+     * Constructor de la clase lista.
+     */
+    
+    
     public Lista() {
         this.pFirst = null;
         this.pLast = null;
         this.iN = 0;
     }
+    
+    /**
+     * Funci&oacute;n que vac&iacute;a una lista.
+     */
     
     public void Empty(){
         this.pFirst = null;
@@ -27,9 +35,19 @@ public class Lista {
         this.iN = 0;
     }
     
+    /**
+     * Funci&oacute;n que revisa si una lista est&aacute; vac&iacute;a.
+     * @return <code>true</code> si est&aacute; vac&iacute;a y <code>false</code>
+     * si no lo estest&aacute;.
+     */
+    
     public boolean isEmpty(){
         return this.pFirst == null;
     }
+    
+    /**
+     * Funci&oacute;n que agrega un nodo al final de la lista enlazada.
+     */
     
     public void Append(int dato,int dato2){
         Casilla pNew = new Casilla(dato,dato2);
@@ -42,6 +60,13 @@ public class Lista {
          this.iN++;
     }
     
+    /**
+     * Funci&oacute;n que agrega un nodo al inicio de la lista enlazada.
+     * @param dato int que contiene la posici&oacute;n de la fila del nodo.
+     * @param dato2 int que contiene la posici&oacute;n de la columna del nodo.
+     * @see 
+     */
+    
     public void Inicio(int dato,int dato2){
         Casilla pNew = new Casilla(dato,dato2);
         if(!isEmpty()){
@@ -52,6 +77,10 @@ public class Lista {
         }
         this.iN++;
     }
+    
+     /**
+     * Funci&oacute;n que remueve un nodo al final de la lista enlazada.
+     */
     
     public void Pop(){
     if(this.pFirst == this.pLast){
@@ -64,6 +93,10 @@ public class Lista {
     this.pLast = aux;
     this.iN--;}
     }
+    
+    /**
+     * Funci&oacute;n que remueve un nodo al inicio de la lista enlazada.
+     */
     
     public void BorrarInicio(){
     if(this.pFirst == this.pLast){

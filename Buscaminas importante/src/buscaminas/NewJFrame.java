@@ -21,7 +21,8 @@ import static buscaminas.Opcion.grafo1;
 import static buscaminas.Opcion.minas1;
 
 /**
- *
+ * Interfaz correspondiente al tablero del buscaminas. Est&aacute; compuesto de una
+ * matr&iacute;z de botones.
  * @author ricardo
  */
 public class NewJFrame extends javax.swing.JFrame {
@@ -31,9 +32,13 @@ public class NewJFrame extends javax.swing.JFrame {
     private int minasact;
     private Lista listabanderas;
     private Lista listaminas;
+    
     /**
-     * Creates new form NewJFrame
+     * Constructor de la clase NewJFrame. Crea la matriz de botones y le asigna
+     * su color, posici&oacute;n y identifica las columnas con letras, mientras
+     * que las filas usan numeros empezando desde el 1.
      */
+    
     public NewJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -53,7 +58,6 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         }
         }
-        
         
         
         botones = new JButton[filas1][columnas1];

@@ -5,8 +5,9 @@
 package buscaminas;
 
 /**
- * Clase pila usada como estructura de datos auxiliar para la busqueda en
+ * Clase cola usada como estructura de datos auxiliar para la b&uacute;squeda en
  * profundidad del grafo.
+ * @see Grafo#DFS(buscaminas.Casilla)
  * @author leopo
  */
 public class Pila {

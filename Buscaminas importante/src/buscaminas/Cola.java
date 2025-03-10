@@ -6,7 +6,8 @@ package buscaminas;
 
 /**
  * Clase cola usada como estructura de datos auxiliar para la busqueda en
- * anchura del grafo.
+ * anchura del grafo. Posee las primitivas comunes de una cola.
+ * @see Grafo#BFS(buscaminas.Casilla)
  * @author zarna
  */
 public class Cola {

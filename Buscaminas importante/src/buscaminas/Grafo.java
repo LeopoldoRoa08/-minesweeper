@@ -21,10 +21,11 @@ public class Grafo {
     int num_minas;
 
     /**
-     * Constructor de la clase Grafo. 
-     * @param filas
-     * @param columnas
-     * @param minas 
+     * Constructor de la clase Grafo con tres parametros.
+     *
+     * @param filas    int N&uacute;mero de filas del tablero.
+     * @param columnas int N&uacute;mero de columnas del tablero.
+     * @param minas    int N&uacute;mero de minas en el tablero.
      */
     
     public Grafo(int filas, int columnas, int minas) {
@@ -35,6 +36,10 @@ public class Grafo {
         this.num_minas = minas;
     }
     
+    /**
+     * Crea el tablero inicializando cada casilla y almacenándola en la lista de adyacencia.
+     */
+    
     public void crearTablero(){
     for(int i=0; i<filas; i++){
     for(int j=0; j<columnas; j++){
@@ -43,8 +48,11 @@ public class Grafo {
     numVertices++;
     } 
     }
-    
     }
+    
+    /**
+     * Funci&oacute;n que conecta cada casilla con sus adyacentes.
+     */
     
     public void unirAristas(){
     for(int i=0; i<listaady.length; i++){
@@ -120,7 +128,10 @@ public class Grafo {
     }
     }
     
-    
+    /**
+     * Funci&oacute;n que conecta una casilla específica con sus adyacentes.
+     * @param i &iacute;ndice de la casilla en la lista de adyacencia.
+     */
     
     public void unir(int i){
      
@@ -196,6 +207,12 @@ public class Grafo {
         listaady[i].getLista().recorrer();
      }
     
+    /**
+     * Funci&oacute;n que genera una mina en una casilla aleatoria del tablero usando la
+     * libreria Random.
+     * @return La casilla donde se colocó la mina, o null si no se pudo colocar.
+     */
+    
     public Casilla generarMina(){
     Random m = new Random();
     int mina = 0;
@@ -217,11 +234,21 @@ public class Grafo {
         return null;
     }
     
+     /**
+     * Funci&oacute;n que crea una lista de casillas que contienen minas.
+     * @return List lista de casillas que contienen minas.
+     */
+    
     public Lista listaMina(){
     Lista lista2 = new Lista();
     lista2.Append2(generarMina());
     return lista2;
     }
+    
+    /**
+     * Funci&oacute;n que calcula el n&uacute;mero de minas adyacentes para 
+     * cada casilla del tablero.
+     */
     
     public void minasAdyacentes(){
     for(int i=0; i<listaady.length; i++){
@@ -237,6 +264,11 @@ public class Grafo {
     }
     }
     
+    /**
+     * Funci&oacute;n para propositos de prueba que imprime en consola el
+     * n&uacute;mero de minas adyacentes para cada casilla en el tablero.
+     */
+    
     public void imprimir(){
         for(int i=0;i<listaady.length;i++){
         System.out.print(listaady[i].getMineAdy());
@@ -245,6 +277,12 @@ public class Grafo {
         }
     }
     
+    /**
+     * Funci&oacute;n que coloca una bandera en una casilla espec&iacute;fica.
+     *
+     * @param fila    int posici&oacute;n fila de la casilla.
+     * @param columna int posici&oacute;n columna de la casilla.
+     */
     
     public void ponerBandera(int fila, int columna){
     for(int i=0; i<listaady.length ; i++){
@@ -253,6 +291,13 @@ public class Grafo {
     }
     }
     }
+    
+    /**
+     * Funci&oacute;n que remueve una bandera de una casilla espec&iacute;fica.
+     *
+     * @param fila    int posici&oacute;n fila de la casilla.
+     * @param columna int posici&oacute;n columna de la casilla.
+     */
     
     public void quitarBandera(int fila, int columna){
     for(int i=0; i<listaady.length ; i++){
@@ -263,6 +308,16 @@ public class Grafo {
     }
     }
     }
+    
+    /**
+     * Funci&oacute;n que revisa si una casilla tiene mina o no, usando DFS o BFS.
+     *
+     * @see Grafo#DFS(buscaminas.Casilla)
+     * @see Grafo#BFS(buscaminas.Casilla)
+     * 
+     * @param fila    int posici&oacute;n fila de la casilla.
+     * @param columna int posici&oacute;n columna de la casilla.
+     */
     
     public void barrerCasilla(int fila, int columna){
         // Hay que hacerle una validacion antes
@@ -283,6 +338,12 @@ public class Grafo {
         }
      
     }
+    
+    /**
+     * Funci&oacute;n que conecta una casilla espec&iacute;fica con sus casillas adyacentes (versión alternativa)
+     * @param i 
+     */
+    
     public void unir3(int i){
      Lista l2 = new Lista();
         l2.Append2(listaady[i]);
@@ -354,12 +415,28 @@ public class Grafo {
         listaady[i].setLista(l2);
         
      }
-        
+    
+    
+    /**
+     * Conecta una casilla espec&iacute;fica con sus casillas adyacentes, 
+     * recorriendo por la longitud de la lista de adyacencias.
+     */
+    
     public void unirAristas2(){
     for(int i=0; i<listaady.length; i++){
     unir3(i);
     }
     }
+    
+    /**
+      * Busca el &iacute;ndice de un elemento en la lista de adyacencia basado en sus
+      * coordenadas de fila y columna.
+      *
+      * @param f La fila del elemento a buscar.
+      * @param c La columna del elemento a buscar.
+      * @return El &iacute;ndice del elemento en la lista de adyacencia si se encuentra,
+      * de lo contrario, devuelve 0.
+      */
     
     public int ind(int f, int c){
     for(int i=0; i<listaady.length; i++){
@@ -369,6 +446,11 @@ public class Grafo {
     }
     return 0;
     }
+    
+    /**
+     * Funci&oacute;n responsable de la busqueda por anchura.
+     * @param origen Casilla que marca donde inicia la busqueda.
+     */
     
     public void BFS(Casilla origen){
         Cola queque= new Cola();
@@ -389,27 +471,30 @@ public class Grafo {
         }
         
     }
-
-      
+}
+    /**
+     * Funci&oacute;n responsable de la busqueda por profundidad.
+     * @param origen Casilla que marca donde inicia la busqueda.
+     * @return <code>false</code> si no tiene minas adyacentes la casilla.
+     */   
     
-    /*public boolean DFS(Casilla origen){
-    Pila stack = new Pila();
-    stack.apilar(origen);
-    origen.visited=true;
-    while(!stack.isEmpty()){
-    Casilla nodoAct =  stack.desapilar();
-    if(nodoAct.MineAdy == 0){
-    Casilla aux = nodoAct.lista.pFirst;
-    while(aux!=null){
+    //public boolean DFS(Casilla origen){
+    //Pila stack = new Pila();
+    //stack.apilar(origen);
+    //origen.visited=true;
+    //while(!stack.isEmpty()){
+    //Casilla nodoAct =  stack.desapilar();
+    //if(nodoAct.MineAdy == 0){
+    //Casilla aux = nodoAct.lista.pFirst;
+    //while(aux!=null){
         //Ver si es true o false
-        if(!aux.visited){
-            stack.apilar(aux);
-            aux.visited = true;
-        }
-        return false;
-    }
-    }*/
-    }
+        //if(!aux.visited){
+            //stack.apilar(aux);
+            //aux.visited = true;
+        
+        //return false;
+    
+    
     
 
     
